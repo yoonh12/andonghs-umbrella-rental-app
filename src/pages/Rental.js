@@ -2,7 +2,7 @@ import "../form.css";
 import { useState } from "react";
 import Footer from "./components/Footer";
 
-function Login() {
+function Rental() {
   const [userName, setUserName] = useState("");
   const [Passwd, setPasswd] = useState("");
 
@@ -44,4 +44,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Rental;
