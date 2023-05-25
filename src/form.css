@@ -1,0 +1,67 @@
+.formTitle {
+  font-size: 4em;
+  text-align: center;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+}
+
+.loginForm input {
+  margin: 10px;
+  height: 40px;
+  border: none;
+  border-radius: 16px;
+}
+
+.loginForm input::placeholder {
+  position: relative;
+  left: 2%;
+}
+
+.formBtn {
+  font-size: 1.9em;
+  width: 120px;
+  height: 40px;
+  cursor: pointer;
+  border: none;
+  border-radius: 16px;
+  color: #fff;
+  background-color: #1baa4d;
+  align-self: center;
+}
+
+.formBtn:hover {
+  background-color: #1bba4d; /* +4096 */
+}
+
+.formBtnRental {
+  font-size: 1.9em;
+  width: 140px;
+  height: 40px;
+  cursor: pointer;
+  border: none;
+  border-radius: 16px;
+  color: #fff;
+  background-color: #418dff;
+  align-self: center;
+}
+
+.formBtnRental:hover {
+  background-color: #419dff; /* +4096 */
+}
+
+@media ( min-width: 768px ) {
+    .loginForm {
+        width: 30vw;
+    }
+
+}
+
+@media ( min-width: 1024px ) {
+    .loginForm {
+        width: 25vw;
+    }
+}
