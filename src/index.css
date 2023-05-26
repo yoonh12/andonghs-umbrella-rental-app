@@ -64,14 +64,14 @@ a {
 }
 
 .btn:hover {
-    background-color: var(--primary-hover);
+  background-color: var(--primary-hover);
 }
 
 /* Footer */
 .footer {
   position: fixed;
   bottom: 0;
-  margin-left: .5vw;
+  margin-left: 0.5vw;
 }
 
 .copyright {
@@ -79,18 +79,18 @@ a {
 }
 
 .neo {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: bold;
   background: -webkit-linear-gradient(-45deg, #4e9ff7, #f28369);
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-@media ( min-width: 768px ) {
+@media (min-width: 768px) {
   .btnCon {
     flex-direction: row;
   }
-  
+
   .title {
     font-size: 3em;
   }
@@ -101,11 +101,11 @@ a {
     font-size: 2em;
   }
 
-  .copyright { 
-    font-size: .8em;
+  .copyright {
+    font-size: 0.8em;
   }
 }
-@media ( min-width: 1024px ) {
+@media (min-width: 1024px) {
   .btnCon {
     flex-direction: row;
   }
@@ -120,7 +120,7 @@ a {
     font-size: 5em;
   }
 
-  .copyright { 
+  .copyright {
     font-size: 1.8em;
   }
 }
