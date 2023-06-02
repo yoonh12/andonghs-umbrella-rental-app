@@ -3,7 +3,8 @@ import Home from './pages/Home';
 import Rental from './pages/Rental';
 import Return from './pages/Return';
 import Login from './pages/Login';
-import AddBook from "./Database";
+import ScanRental from "./pages/ScanRental";
+import Success from "./pages/Success";
 
 function App() {
   return (
@@ -13,8 +14,8 @@ function App() {
         <Route path="/rental" element={<Rental />} />
         <Route path="/return" element={<Return />} />
         <Route path="/admin" element={<Login />} />
-        
-        <Route path="/db" element={<AddBook />} />
+        <Route path="/scan" element={<ScanRental />} />
+        <Route path="/success" element={<Success />} />
       </Routes>
     </BrowserRouter>
   );

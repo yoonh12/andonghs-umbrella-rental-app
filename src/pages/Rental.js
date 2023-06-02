@@ -1,38 +1,33 @@
 import "../form.css";
 import { useState } from "react";
 import Footer from "./components/Footer";
+import { useNavigate } from "react-router-dom";
 
 function Rental() {
-  const [userId, setUserId] = useState("");
-  // const [Passwd, setPasswd] = useState("");
+  const [studentId, setStudentId] = useState("");
+  const navigate = useNavigate();
 
-  const onUserId = (e) => {
-    setUserId(e.target.value);
+  const onChange = (e) => {
+    setStudentId(e.target.value);
   };
 
-  // const onPassWd = (e) => {
-  //   setPasswd(e.target.value);
-  // };
+  const onSubmit = (e) => {
+    e.preventDefault();
+    navigate("/scan", { state: { studentId } });
+  };
 
   return (
     <div className="main">
       <div className="container">
         <h1 className="formTitle">우산 대여</h1>
-        <form className="loginForm">
+        <form className="loginForm" onSubmit={onSubmit}>
           <input
-            name="userId"
-            type="text"
-            onChange={onUserId}
-            value={userId}
+            name="studentId"
+            type="number"
+            onChange={onChange}
+            value={studentId}
             placeholder="학번"
           />
-          {/* <input
-            name="password"
-            type="password"
-            onChange={onPassWd}
-            value={Passwd}
-            placeholder="비밀번호"
-          /> */}
           <button className="formBtnRental" type="submit">
             지금 대여하기!
           </button>
