@@ -1,3 +1,3 @@
 # Andong HS Umbrella Rental System
-Client
+-Client
 with Create React App.
