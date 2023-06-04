@@ -18,7 +18,7 @@ function Home() {
             <Button btnText="반납하기" />
           </Link>
         </div>
-        <p className="license">LICENSE @AHS @NEOFLUX<span className="ifu">이용안내</span></p>
+        <p className="bottom-txt"><span className="license">LICENSE</span><span className="copy">@AHS @<span className="neo">NEOFLUX</span></span><span className="ifu">이용안내</span></p>
       </div>
       {/* <Footer /> */}
     </div>

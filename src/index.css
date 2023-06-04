@@ -1,25 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&family=Roboto:wght@700&display=swap");
-
-@font-face {
-  font-family: "Pretendard Thin";
-  src: url("fonts/Pretendard-1.3.6/web/static/woff2/Pretendard-Thin.woff2")
-    format("woff2");
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Pretendard Medium";
-  src: url("fonts/Pretendard-1.3.6/web/static/woff2/Pretendard-Medium.woff2")
-    format("woff2");
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Pretendard Bold";
-  src: url("fonts/Pretendard-1.3.6/web/static/woff2/Pretendard-Bold.woff2")
-    format("woff2");
-  font-style: normal;
-}
+@import url("fonts/Pretendard-1.3.6/web/static/pretendard.css");
 
 :root {
   --background-color: #fff;
@@ -31,7 +11,8 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "Pretendard Bold", sans-serif;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 700;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -90,17 +71,26 @@ a {
   background-color: var(--primary-hover);
 }
 
-/* License Text */
-.license {
-  font-family: "Pretendard Light", sans-serif;
+/* Bottom Text */
+.bottom-txt {
+  display: flex;
   width: 300px;
   font-size: 13px;
+  line-height: 15px;
+}
+
+.license,
+.copy,
+.ifu {
   font-weight: 100;
-  position: relative;
+}
+
+.copy {
+  margin-left: 13px;
 }
 
 .ifu {
-  display: none;
+  margin-left: auto;
 }
 
 /* Footer */
@@ -116,7 +106,6 @@ a {
 
 .neo {
   font-family: "Roboto", sans-serif;
-  font-weight: bold;
   background: -webkit-linear-gradient(-45deg, #4e9ff7, #f28369);
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -137,14 +126,15 @@ a {
     font-size: 2em;
   }
 
-  .copyright {
-    font-size: 0.8em;
+  .bottom-txt {
+    width: calc(2 * (160px + 5px));
   }
 
-  .license {
-    width: calc((160px + 5px) * 2);
+  .copy {
+    margin-left: 10px;
   }
 }
+
 @media (min-width: 1024px) {
   .btnCon {
     flex-direction: row;
@@ -161,11 +151,12 @@ a {
     font-size: 4em;
   }
 
-  .copyright {
-    font-size: 1.8em;
+  .bottom-txt {
+    font-size: 20px;
+    width: calc(2 * (320px + 10px));
   }
 
-  .license {
-    width: calc((320px + 10px) * 2);
+  .copy {
+    margin-left: 20px;
   }
 }

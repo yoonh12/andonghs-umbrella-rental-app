@@ -1,7 +1,7 @@
 import "../form.css";
 import { useState } from "react";
-import Footer from "./components/Footer";
 import { useNavigate } from "react-router-dom";
+// import Footer from "./components/Footer";
 
 function Rental() {
   const [studentId, setStudentId] = useState("");
@@ -34,7 +34,7 @@ function Rental() {
         </form>
       </div>
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
