@@ -37,6 +37,8 @@ a {
 }
 
 .container {
+  position: relative;
+  top: -85px; /* Since umbrella logo. */
   display: flex;
   flex-direction: column;
   align-items: center;
