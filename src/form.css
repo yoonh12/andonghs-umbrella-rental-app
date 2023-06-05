@@ -1,55 +1,38 @@
-.formTitle {
-  font-size: 4em;
-  text-align: center;
-}
-
-.stdForm {
+.std-form {
   display: flex;
   flex-direction: column;
   width: 300px;
 }
 
-.stdForm label {
+.std-form label {
+  margin: 5px 0;
   font-size: 20px;
+  font-weight: 800;
 }
 
-.stdForm input {
+.std-form input {
+  margin: 5px 0;
   height: 40px;
   border: 1px solid #000;
   border-radius: 27.5px;
 }
 
-.stdForm input::placeholder {
+.std-form input::placeholder {
   position: relative;
   left: 13px;
+  font-size: 15px;
+  font-weight: 200;
 }
 
-.formBtnRental {
-  margin: 10px;
-  font-size: 1.9em;
-  width: 300px;
-  height: 55px;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-  /* color: #fff; */
-  background-color: var(--primary);
-  align-self: center;
+
+@media (min-width: 768px) {
+  .std-form {
+    width: 30vw;
+  }
 }
 
-.formBtnRental:hover {
-  background-color: var(--primary-hover); /* +4096 */
-}
-
-@media ( min-width: 768px ) {
-    .stdForm {
-        width: 30vw;
-    }
-
-}
-
-@media ( min-width: 1024px ) {
-    .stdForm {
-        width: 25vw;
-    }
+@media (min-width: 1024px) {
+  .std-form {
+    width: 25vw;
+  }
 }

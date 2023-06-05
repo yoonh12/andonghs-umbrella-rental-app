@@ -1,22 +1,17 @@
 import { Link } from "react-router-dom";
-import umbrellaLogo from "../images/umbrella.png";
-// import Footer from "./components/Footer";
-
-function Button(props) {
-  return <button className="btn">{props.btnText}</button>;
-}
+import umbrellaLogo from "../images/umbrella.svg";
+import Button from "./components/Button";
 
 function Home() {
   return (
-    <div className="main">
       <div className="container">
-        <img className="umbrella-logo" style={{ width: 150, margin: "10px" }} src={umbrellaLogo} alt="Umbrella Logo" />
+        <img className="umbrella-logo" src={umbrellaLogo} alt="Umbrella Logo" />
         <h1 className="title">
           안동고등학교
           <br />
           우산 대여 서비스
         </h1>
-        <div className="btnCon">
+        <div className="btn-con">
           <Link to="/rental">
             <Button btnText="대여하기" />
           </Link>
@@ -32,8 +27,6 @@ function Home() {
           <a className="ifu" href="neoflux.club">이용안내</a>
         </p>
       </div>
-      {/* <Footer /> */}
-    </div>
   );
 }
 

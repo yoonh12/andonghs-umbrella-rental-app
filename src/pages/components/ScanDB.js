@@ -1,5 +1,6 @@
 import { QrScanner } from "@yudiel/react-qr-scanner";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const Scanner = (props) => {
   const navigate = useNavigate();
@@ -30,3 +31,8 @@ const Scanner = (props) => {
 };
 
 export default Scanner;
+
+Scanner.propTypes = {
+  stats: PropTypes.string,
+  stateStdId: PropTypes.number
+}

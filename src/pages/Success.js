@@ -25,7 +25,7 @@ function Success() {
   }`;
 
   return (
-    <div className="main">
+    <>
       <div className="container">
         <h1 className="title">
           {state === "rental" ? "대여가" : "반납이"} 완료되었습니다.
@@ -34,7 +34,7 @@ function Success() {
         <p>반납 기한: {returnDate}</p>
       </div>
       <Footer />
-    </div>
+    </>
   );
 }
 

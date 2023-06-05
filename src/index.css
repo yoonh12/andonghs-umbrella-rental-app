@@ -12,7 +12,6 @@
   margin: 0;
   padding: 0;
   font-family: "Pretendard", sans-serif;
-  font-weight: 700;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -39,29 +38,36 @@ a {
 
 .container {
   position: relative;
-  top: -85px; /* Since umbrella logo. */
+  top: -85px; /* Since umbrella logo */
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.umbrella-logo {
+  width: 150px;
+  margin: 5px 0;
 }
 
 .title {
+  margin: 5px 0;
   text-align: center;
   font-size: 3em;
+  font-weight: 900;
 }
 
 /* Button */
-.btnCon {
+.btn-con {
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .btn {
-  margin: 5px;
+  margin: 5px 0px;
   width: 300px;
   height: 55px;
-  font-size: 2.5em;
+  font-size: 2em;
+  font-weight: 800;
   background-color: var(--primary);
   border: none;
   box-shadow: 4px 4px 7px -3px rgb(0, 0, 0, 0.25);
@@ -70,12 +76,23 @@ a {
   cursor: pointer;
 }
 
+.btn { /* Align Button Image */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spacer {
+  height: 10px;
+}
+
 .btn:hover {
   background-color: var(--primary-hover);
 }
 
-/* Bottom Text */
+/* Bottom Text for Home.js */
 .bottom-txt {
+  margin: 5px 0;
   display: flex;
   width: 300px;
   font-size: 13px;
@@ -96,7 +113,7 @@ a {
   margin-left: auto;
 }
 
-/* Footer */
+/* Footer for other pages */
 .footer {
   position: fixed;
   bottom: 0;
@@ -109,6 +126,7 @@ a {
   line-height: 15px;
 }
 
+/* NEOFLUX Logo Gradient */
 .neo {
   font-family: "Roboto", sans-serif;
   background: -webkit-linear-gradient(-45deg, #4e9ff7, #f28369);
@@ -117,7 +135,7 @@ a {
 }
 
 @media (min-width: 768px) {
-  .btnCon {
+  .btn-con {
     flex-direction: row;
   }
 
@@ -141,7 +159,7 @@ a {
 }
 
 @media (min-width: 1024px) {
-  .btnCon {
+  .btn-con {
     flex-direction: row;
   }
 
@@ -150,7 +168,6 @@ a {
   }
 
   .btn {
-    margin: 10px;
     width: 320px;
     height: 80px;
     font-size: 4em;
@@ -164,35 +181,4 @@ a {
   .copy {
     margin-left: 20px;
   }
-}
-
-.progress-con {
-  display: flex;
-  margin: 10px;
-}
-
-
-.circle {
-  width: 19px;
-  height: 19px;
-  border: 3px solid #000;
-  border-radius: 50%;
-  background-color: blue;
-}
-
-.horizontal {
-  position: relative;
-  top: 11px;
-  width: 250px;
-  height: 3px;
-  border: none;
-  background-color: black;
-}
-
-.circle2 {
-  width: 19px;
-  height: 19px;
-  border: 3px solid #000;
-  border-radius: 50%;
-  background-color: white;
 }

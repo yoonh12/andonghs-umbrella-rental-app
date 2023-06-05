@@ -1,0 +1,40 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px); /* 배경에 blur 효과 적용 */
+  z-index: 99999999;
+}
+
+.popup-wrapper {
+  position: fixed;
+  top: 40vh;
+  padding: 10px 15px;
+  background-color: #fff;
+  border-radius: 5px;
+  z-index: 100000000;
+}
+
+.popup-content > h1 {
+  margin: 5px 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: #000;
+}
+
+.popup-content > h2 {
+  margin-top: 5px;
+  font-size: 20px;
+  font-weight: 800;
+  color: #ff0000;
+}
+
+.popup-content > p {
+  margin-bottom: 5px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #000;
+}
