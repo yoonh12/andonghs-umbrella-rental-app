@@ -3,7 +3,6 @@ import Footer from "./components/Footer";
 import Progress from "./components/Progress";
 import Scanner from "./components/ScanDB";
 
-
 function Return() {
   return (
     <>
