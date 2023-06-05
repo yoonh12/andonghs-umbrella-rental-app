@@ -29,7 +29,7 @@ function Home() {
           <span className="copy">
             @AHS @<span className="neo">NEOFLUX</span>
           </span>
-          <span className="ifu">이용안내</span>
+          <a className="ifu" href="neoflux.club">이용안내</a>
         </p>
       </div>
       {/* <Footer /> */}

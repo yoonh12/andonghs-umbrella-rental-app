@@ -1,7 +1,7 @@
 import "../form.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import Footer from "./components/Footer";
+import Footer from "./components/Footer";
 
 function Rental() {
   const [studentId, setStudentId] = useState("");
@@ -19,22 +19,31 @@ function Rental() {
   return (
     <div className="main">
       <div className="container">
-        <h1 className="formTitle">우산 대여</h1>
-        <form className="loginForm" onSubmit={onSubmit}>
+        <h1 className="title">
+          안동고등학교
+          <br />
+          우산 대여 서비스
+        </h1>
+
+
+
+        <form className="stdForm" onSubmit={onSubmit}>
+          <label htmlFor="stdId">인적 사항</label>
           <input
             name="studentId"
+            id="stdId"
             type="number"
             onChange={onChange}
             value={studentId}
-            placeholder="학번"
+            placeholder="학번을 입력해 주세요."
           />
           <button className="formBtnRental" type="submit">
-            지금 대여하기!
+            
           </button>
         </form>
       </div>
 
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
