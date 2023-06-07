@@ -20,8 +20,6 @@ const Scanner = (props) => {
             .then((response) => response.json())
             .then((res) => {
               console.log(res);
-              // window.alert(res);
-              // window.history.back();
               navigate("/success", { state: props.stats });
             });
         }}
