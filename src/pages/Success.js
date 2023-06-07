@@ -1,5 +1,6 @@
 import "../return.css";
 import { useLocation } from "react-router-dom";
+import Button from "./components/Button";
 import Footer from "./components/Footer";
 
 let curDate = new Date();
@@ -13,7 +14,7 @@ console.log(curDate.toLocaleDateString("ko-KR"));
 function Success() {
   const { state } = useLocation();
   if (state == null) {
-    window.history.back();
+    // window.history.back();
   }
 
   const curDate = `${year}/${month < 10 ? `0${month}` : `${month}`}/${
@@ -32,6 +33,7 @@ function Success() {
         </h1>
         <p>대여 날자: {curDate}</p>
         <p>반납 기한: {returnDate}</p>
+        <Button btnText="돌아가기" />
       </div>
       <Footer />
     </>

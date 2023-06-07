@@ -10,12 +10,21 @@
 }
 
 .popup-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
-  top: 40vh;
-  padding: 10px 15px;
-  background-color: #fff;
-  border-radius: 5px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 100000000;
+}
+
+.popup-content {
+  padding: 10px 15px;
+  border-radius: 5px;
+  background-color: #fff;
 }
 
 .popup-content > h1 {

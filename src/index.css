@@ -26,6 +26,13 @@ body {
 }
 
 body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -76,7 +83,8 @@ a {
   cursor: pointer;
 }
 
-.btn { /* Align Button Image */
+.btn {
+  /* Align Button Image */
   display: flex;
   align-items: center;
   justify-content: center;

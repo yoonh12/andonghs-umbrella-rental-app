@@ -15,7 +15,7 @@ function ScanRental() {
         </h1>
 
         <Progress progress={1} />
-        <p>우산 대여</p>
+        <p className="progress-status">우산 대여</p>
         <Scanner stats="rental" stateStdId={state.studentId} />
       </div>
       <Footer />

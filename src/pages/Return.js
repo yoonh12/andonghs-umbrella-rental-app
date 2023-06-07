@@ -14,7 +14,7 @@ function Return() {
         </h1>
 
         <Progress progress={0} />
-        <p>우산 반납</p>
+        <p className="progress-status">우산 반납</p>
         <Scanner stats="return" />
       </div>
       <Footer />
