@@ -16,7 +16,7 @@ console.log(curDate.toLocaleDateString("ko-KR"));
 function Success() {
   const { state } = useLocation();
   if (state == null) {
-    // window.history.back();
+    window.history.back();
   }
 
   const curDate = `${year}/${month < 10 ? `0${month}` : `${month}`}/${
