@@ -6,6 +6,10 @@
   --text-color: #000;
   --primary: #ffc145;
   --primary-hover: #fcca45; /* +4096 (Decimal) */
+
+  --small-screen: 200px;
+  --default-screen: 300px;
+  --large-screen: 350px;
 }
 
 * {
@@ -45,10 +49,10 @@ a {
 
 .container {
   position: relative;
-  top: -85px; /* Since umbrella logo */
   display: flex;
   flex-direction: column;
   align-items: center;
+  top: -80px; /* Since umbrella logo */
 }
 
 .umbrella-logo {
@@ -119,6 +123,8 @@ a {
 
 .ifu {
   margin-left: auto;
+  background-color: transparent;
+  border: none;
 }
 
 /* Footer for other pages */
@@ -143,22 +149,27 @@ a {
 }
 
 @media (min-width: 768px) {
+  .umbrella-logo {
+    width: 100px;
+    margin: 5px 0;
+  }  
+
   .btn-con {
     flex-direction: row;
   }
 
-  .title {
-    font-size: 3em;
-  }
-
   .btn {
-    width: 160px;
-    height: 40px;
+    margin: 5px 5px;
+    width: var(--small-screen);
     font-size: 2em;
   }
 
   .bottom-txt {
-    width: calc(2 * (160px + 5px));
+    width: calc(2 * (var(--small-screen) + 5px));
+  }
+
+  .ifu {
+    /* font-size: 18px; */
   }
 
   .copy {
@@ -167,26 +178,36 @@ a {
 }
 
 @media (min-width: 1024px) {
+  .umbrella-logo {
+    width: 180px;
+    margin: 10px 0;
+  }  
+
   .btn-con {
     flex-direction: row;
   }
 
   .title {
-    font-size: 6em;
+    font-size: 4.5em;
   }
 
   .btn {
-    width: 320px;
-    height: 80px;
-    font-size: 4em;
+    margin: 10px;
+    width: var(--large-screen);
+    height: 75px;
+    font-size: 3em;
   }
 
   .bottom-txt {
-    font-size: 20px;
-    width: calc(2 * (320px + 10px));
+    font-size: 18px;
+    width: calc(2 * (var(--large-screen) + 10px));
+  }
+
+  .ifu {
+    font-size: 18px;
   }
 
   .copy {
-    margin-left: 20px;
+    margin-left: 25px;
   }
 }

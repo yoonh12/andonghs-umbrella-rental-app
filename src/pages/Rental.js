@@ -19,7 +19,7 @@ function Rental() {
     setShowPopup(!showPopup); // reverse popup status
   };
 
-  /* Click Popup Outside to Close start */
+  /* when Click Popup Outside to Close. start */
   const handleClickOutside = (e) => {
     if (popupRef.current && !popupRef.current.contains(e.target)) {
       setShowPopup(false);
@@ -32,9 +32,9 @@ function Rental() {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
-  /* Click Popup Outside to Close end */
+  /* when Click Popup Outside to Close. end */
 
-  /* Input Change */
+  /* when Input Change */
   const onChange = (e) => {
     setStudentId(e.target.value);
   };
@@ -45,11 +45,11 @@ function Rental() {
     if (studentId !== "" && !isNaN(studentId) && studentId.length === 4) {
       togglePopup();
     } else {
-      alert("학번을 올바르게 입력해주세요!");
+      alert("학번을 올바르게 입력해 주세요!");
     }
   };
 
-  /* Click Popup Button */
+  /* when Click Popup Button */
   const onClick = () => {
     navigate("/scan", { state: Number(studentId) });
   };
@@ -112,7 +112,7 @@ function Rental() {
               <img
                 src={rightArrow}
                 alt="Right Arrow Sign"
-                style={{ width: "25px" }}
+                className="right-arrow"
               />
             }
             btnType="submit"

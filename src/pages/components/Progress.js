@@ -7,6 +7,12 @@ function Progress(props) {
   } else if (props.progress === 1) {
     color1 = "lime";
     color2 = "blue";
+  } else if (props.progress === 2) {
+    color1 = "lime";
+    color2 = "lime";
+  } else {
+    color1 = "white";
+    color2 = "white";
   }
 
   return (
