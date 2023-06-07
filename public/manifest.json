@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "우산 대여 앱",
+  "name": "안동고등학교 우산 대여 앱",
   "icons": [
     {
       "src": "android-chrome-192x192.png",
@@ -18,7 +18,6 @@
       "type": "image/x-icon"
     }
   ],
-  "start_url": ".",
   "display": "standalone",
   "theme_color": "#ffc145",
   "background_color": "#ffffff"
