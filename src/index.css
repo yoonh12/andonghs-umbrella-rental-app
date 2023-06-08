@@ -168,10 +168,6 @@ a {
     width: calc(2 * (var(--small-screen) + 5px));
   }
 
-  .ifu {
-    /* font-size: 18px; */
-  }
-
   .copy {
     margin-left: 10px;
   }
