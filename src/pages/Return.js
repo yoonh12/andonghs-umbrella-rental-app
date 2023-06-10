@@ -1,4 +1,3 @@
-import "../return.css";
 import Footer from "./components/Footer";
 import Progress from "./components/Progress";
 import Scanner from "./components/ScanDB";
@@ -15,7 +14,11 @@ function Return() {
 
         <Progress progress={0} />
         <p className="progress-status">우산 반납</p>
-        <Scanner stats="return" />
+        <div className="scanner">
+          <Scanner stats={1} />
+        </div>
+        {/* 0(false) -> rental
+        1(true) -> return */}
       </div>
       <Footer />
     </>

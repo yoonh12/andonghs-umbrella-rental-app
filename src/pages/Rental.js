@@ -51,7 +51,19 @@ function Rental() {
 
   /* when Click Popup Button */
   const onClick = () => {
-    navigate("/scan", { state: Number(studentId) });
+    fetch("http://localhost:3001/send", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        check: true,
+        stdId: Number(studentId),
+      }),
+    })
+      .then((response) => response.json())
+      .then((res) => {
+        console.log(res);
+        navigate("/scan", { state: Number(studentId) });
+      });
   };
 
   return (

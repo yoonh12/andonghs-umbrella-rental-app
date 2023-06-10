@@ -52,7 +52,12 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  top: -80px; /* Since umbrella logo */
+}
+
+.logo-container {
+  height: 0;
+  position: relative;
+  bottom: 160px;
 }
 
 .umbrella-logo {
@@ -94,12 +99,14 @@ a {
   justify-content: center;
 }
 
-.spacer {
-  height: 10px;
-}
-
 .btn:hover {
   background-color: var(--primary-hover);
+}
+
+/* Scanner */
+
+.scanner {
+  width: 100%;
 }
 
 /* Bottom Text for Home.js */
@@ -149,10 +156,14 @@ a {
 }
 
 @media (min-width: 768px) {
+  .logo-container {
+    bottom: 110px;
+  }
+
   .umbrella-logo {
     width: 100px;
     margin: 5px 0;
-  }  
+  }
 
   .btn-con {
     flex-direction: row;
@@ -162,6 +173,11 @@ a {
     margin: 5px 5px;
     width: var(--small-screen);
     font-size: 2em;
+  }
+
+  /* Scanner */
+  .scanner {
+    width: var(--small-screen);
   }
 
   .bottom-txt {
@@ -174,16 +190,21 @@ a {
 }
 
 @media (min-width: 1024px) {
+  .logo-container {
+    bottom: 200px;
+  }
+
   .umbrella-logo {
     width: 180px;
     margin: 10px 0;
-  }  
+  }
 
   .btn-con {
     flex-direction: row;
   }
 
   .title {
+    margin: 10px 0;
     font-size: 4.5em;
   }
 
@@ -194,7 +215,13 @@ a {
     font-size: 3em;
   }
 
+  /* Scanner */
+  .scanner {
+    width: var(--large-screen);
+  }
+
   .bottom-txt {
+    margin: 10px 0;
     font-size: 18px;
     width: calc(2 * (var(--large-screen) + 10px));
   }

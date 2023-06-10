@@ -1,30 +1,27 @@
 import { Link, useLocation } from "react-router-dom";
-import "../return.css";
+import "../success.css";
 import checkLogo from "../images/check.svg";
+import rightArrow from "../images/rightArrow.png";
 import Button from "./components/Button";
 import Footer from "./components/Footer";
 import Progress from "./components/Progress";
 
-let curDate = new Date();
-let date = curDate.getDate();
-let month = curDate.getMonth() + 1;
-let year = curDate.getFullYear();
-
-let reDate = curDate.getDate() + 5;
-console.log(curDate.toLocaleDateString("ko-KR"));
+let date = new Date();
+date.setDate(date.getDate() + 5);
+let year = date.getFullYear();
+let month = date.getMonth() + 1;
+let day = date.getDate();
 
 function Success() {
-  const { state } = useLocation();
+  const {
+    state: { state, stdId, umbId },
+  } = useLocation();
   if (state == null) {
-    window.history.back();
+    // window.history.back(); // prevent direct access to the page.
   }
 
-  const curDate = `${year}/${month < 10 ? `0${month}` : `${month}`}/${
-    date < 10 ? `0${date}` : `${date}`
-  }`;
-
-  const returnDate = `${year}/${month < 10 ? `0${month}` : `${month}`}/${
-    date < 10 ? `0${reDate}` : `${reDate}`
+  const returnDate = `반납 기한: ${month < 10 ? `0${month}` : `${month}`}월 ${
+    day < 10 ? `0${day}` : `${day}일`
   }`;
 
   return (
@@ -36,12 +33,18 @@ function Success() {
           우산 대여 서비스
         </h1>
         <Progress progress={2} />
-        {/* <h1 className="title">
-          {state === "rental" ? "대여가" : "반납이"} 완료되었습니다.
-        </h1> */}
-        <img src={checkLogo} alt="Check Sign" style={{ margin: "5px 0" }} />
-        <p>대여 날자: {curDate}</p>
-        <p>반납 기한: {returnDate}</p>
+        <img src={checkLogo} alt="Check Sign" style={{ margin: "5px 0 0" }} />
+        <h2 className="succeed">처리완료</h2>
+        <p className="info">
+          {state === 0 && (
+            <>
+              {stdId}
+              <img className="right-arrow-success" src={rightArrow} alt="" />
+            </>
+          )}
+          {umbId}번 우산{state === 1 && "반납"}
+        </p>
+        <h3 className="warning">{state === 0 && returnDate}</h3>
         <Link to="/">
           <Button btnText="돌아가기" />
         </Link>

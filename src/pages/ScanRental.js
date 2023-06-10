@@ -4,7 +4,7 @@ import Scanner from "./components/ScanDB";
 import Progress from "./components/Progress";
 
 function ScanRental() {
-  const { state } = useLocation();
+  const { state: stdId } = useLocation();
   return (
     <>
       <div className="container">
@@ -16,7 +16,11 @@ function ScanRental() {
 
         <Progress progress={1} />
         <p className="progress-status">우산 대여</p>
-        <Scanner stats="rental" stateStdId={state.studentId} />
+        <div className="scanner">
+          <Scanner state={0} stdId={stdId} />
+        </div>
+        {/* 0(false) -> rental
+        1(true) -> return */}
       </div>
       <Footer />
     </>

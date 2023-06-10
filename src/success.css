@@ -1,0 +1,23 @@
+.succeed {
+    font-size: 40px;
+    font-weight: 900;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.right-arrow-success {
+    margin: 0 4px;
+    width: 17px;
+}
+
+.warning {
+    margin: 5px 0;
+    color: red;
+    font-size: 20px;
+    font-weight: 800;
+}
