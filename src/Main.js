@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from './pages/Home';
-import Rental from './pages/Rental';
+import Rental from './pages/FormRental';
 import Return from './pages/Return';
 import ScanRental from "./pages/ScanRental";
 import Success from "./pages/Success";
