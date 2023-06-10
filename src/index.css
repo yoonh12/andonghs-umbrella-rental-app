@@ -137,7 +137,7 @@ a {
 /* Footer for other pages */
 .footer {
   position: fixed;
-  bottom: 0;
+  bottom: 20px;
   margin-left: 45px;
 }
 
