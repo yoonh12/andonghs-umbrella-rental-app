@@ -36,16 +36,6 @@
   border-radius: 50%;
 }
 
-@media (min-width: 768px) {
-  .progress-status {
-    width: var(--small-screen);
-  }
-
-  .horizontal {
-    width: calc(var(--small-screen) - 50px);
-  }
-}
-
 @media (min-width: 1024px) {
   .progress-status {
     width: var(--large-screen);

@@ -45,16 +45,6 @@ input[type="number"] {
   width: 25px;
 }
 
-@media (min-width: 768px) {
-  .std-form {
-    width: var(--small-screen);
-  }
-
-  .right-arrow {
-    width: 30px;
-  }
-}
-
 @media (min-width: 1024px) {
   .std-form {
     width: var(--large-screen);
