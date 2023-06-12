@@ -22,35 +22,39 @@ const Scanner = (props) => {
   }`;
 
   const navigate = useNavigate();
+  let status;
   return (
     <QrScanner
       scanDelay={700}
-      onDecode={(qrVal) => {
+      onDecode={async (qrVal) => {
         const umbId = Number(qrVal);
         if (!isNaN(qrVal)) {
-          fetch("http://localhost:3001/send", {
-            method: "post",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              state: props.state,
-              stdId: props.stdId,
-              umbId: umbId,
-              rentalDate: rentalDateDB,
-              returnDate: returnDateDB,
-              check: false,
-            }),
-          })
-            .then((response) => response.json())
-            .then((res) => {
-              console.log(res);
-              navigate("/success", {
-                state: {
-                  state: props.state,
-                  stdId: props.stdId,
-                  umbId: umbId,
-                },
-              });
+          try {
+            const response = await fetch("https://api.neoflux.club/send", {
+              method: "post",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                state: props.state,
+                stdId: props.stdId,
+                umbId: umbId,
+                rentalDate: rentalDateDB,
+                returnDate: returnDateDB,
+                check: false,
+              }),
             });
+            status = response.status;
+            const res = await response.json();
+            console.log(status, res);
+            navigate("/success", {
+              state: {
+                state: props.state,
+                stdId: props.stdId,
+                umbId: umbId,
+              },
+            });
+          } catch (err) {
+            console.log(err);
+          }
         } else {
           alert("올바르지 않은 QR");
         }
