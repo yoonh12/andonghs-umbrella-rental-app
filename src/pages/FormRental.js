@@ -1,28 +1,52 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../form.css";
-import "../layerpop.css";
-import "../progress.css";
 import rightArrow from "../images/rightArrow.png";
 import Progress from "./components/Progress";
 import Button from "./components/Button";
 import Footer from "./components/Footer";
+import Popup from "./components/Popup";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 
 function Rental() {
   const [studentId, setStudentId] = useState("");
   const navigate = useNavigate();
 
-  const [showPopup, setShowPopup] = useState(false); // popup status
-  const popupRef = useRef();
+  const [showPopupA, setShowPopupA] = useState(false); // popup status
+  const [showPopupB, setShowPopupB] = useState(false); // popup status
+  const [showPopupC, setShowPopupC] = useState(false); // popup status
+  const popupRefA = useRef();
+  const popupRefB = useRef();
+  const popupRefC = useRef();
 
-  const togglePopup = () => {
-    setShowPopup(!showPopup); // reverse popup status
+  /* when Input Change */
+  const onChange = (e) => {
+    setStudentId(e.target.value);
+  };
+
+  const togglePopupA = () => {
+    setShowPopupA((prevState) => !prevState);
+  };
+
+  const togglePopupB = () => {
+    setShowPopupB((prevState) => !prevState);
+  };
+
+  const togglePopupC = () => {
+    setShowPopupC((prevState) => !prevState);
   };
 
   /* when Click Popup Outside to Close. start */
   const handleClickOutside = (e) => {
-    if (popupRef.current && !popupRef.current.contains(e.target)) {
-      setShowPopup(false);
+    if (popupRefA.current && !popupRefA.current.contains(e.target)) {
+      setShowPopupA(false);
+    }
+    if (popupRefB.current && !popupRefB.current.contains(e.target)) {
+      setShowPopupB(false);
+    }
+    if (popupRefC.current && !popupRefC.current.contains(e.target)) {
+      setShowPopupC(false);
     }
   };
 
@@ -32,38 +56,42 @@ function Rental() {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
-  /* when Click Popup Outside to Close. end */
-
-  /* when Input Change */
-  const onChange = (e) => {
-    setStudentId(e.target.value);
-  };
 
   /* Check form value after submit */
   const onSubmit = (e) => {
     e.preventDefault(); // prevent HTML form submit
     if (studentId !== "" && !isNaN(studentId) && studentId.length === 4) {
-      togglePopup();
+      setShowPopupA(true);
     } else {
-      alert("학번을 올바르게 입력해 주세요!");
+      setShowPopupC(true);
     }
   };
 
   /* when Click Popup Button */
-  const onClick = () => {
-    fetch("http://localhost:3001/send", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        check: true,
-        stdId: Number(studentId),
-      }),
-    })
-      .then((response) => response.json())
-      .then((res) => {
-        console.log(res);
-        navigate("/scan", { state: Number(studentId) });
+  const clickOkay = async () => {
+    try {
+      const response = await fetch("https://api.neoflux.club/send", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          willChk: true,
+          stdId: Number(studentId),
+        }),
       });
+
+      const chk = await response.json();
+
+      if (chk.isAvailable) {
+        navigate("/scan", { state: Number(studentId) });
+      } else if (chk.isAvailable === false) {
+        setShowPopupA(false);
+        setShowPopupB(true);
+      } else {
+        console.log("Error while Check (from Client)");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -77,30 +105,51 @@ function Rental() {
 
         <Progress progress={0} />
 
-        {showPopup && (
-          <>
-            <div className="overlay" />
-            <div className="popup-wrapper">
-              <div className="popup-content" ref={popupRef}>
-                <h1>유의 사항</h1>
-                <h2>우산은 5일 이내로 반납해주세요!</h2>
-                <p>학교에 비치된 우산은 모두의 재산입니다.</p>
-                <Button btnText="OK!" onClick={onClick} />
-              </div>
-            </div>
-          </>
+        {/* Popup A */}
+        {showPopupA && (
+          <Popup
+            popupRef={popupRefA}
+            onClose={togglePopupA}
+            onButtonClick={clickOkay}
+            title="유의 사항"
+            subTitle="우산은 5일 이내로 반납해주세요!"
+            buttonText="OK!"
+            hasCloseBtn
+          />
         )}
-
-        {false && (
-          <>
-            <div className="overlay" />
-            <div className="popup-wrapper" ref={popupRef}>
-              <div className="popup-content">
-                <h2>학번을 올바르게 입력해 주세요!</h2>
-                <Button btnText="OK!" onClick={onClick} />
-              </div>
-            </div>
-          </>
+        {/* Popup B */}
+        {showPopupB && (
+          <Popup
+            popupRef={popupRefB}
+            onClose={togglePopupB}
+            onButtonClick={togglePopupB}
+            title={[
+              "실패 ",
+              <FontAwesomeIcon key="icon" icon={faExclamation} />,
+            ]}
+            subTitle={[
+              "이미 대여중인 사용자 입니다.",
+              <br key="line-break" />,
+              "반납 후 대여해 주세요.",
+            ]}
+            smallText="(본인이 대여하지 않은 경우, 아래의 채팅앱을 통해 제보해 주세요!)"
+            buttonText="넵 🫤"
+            showChat
+          />
+        )}
+        {/* Popup C */}
+        {showPopupC && (
+          <Popup
+            popupRef={popupRefC}
+            onClose={togglePopupC}
+            onButtonClick={togglePopupC}
+            title={[
+              "실패 ",
+              <FontAwesomeIcon key="icon" icon={faExclamation} />,
+            ]}
+            subTitle={"학번을 올바르게 입력해 주세요!"}
+            buttonText="넵 🫤"
+          />
         )}
 
         <form className="std-form" onSubmit={onSubmit}>
@@ -110,7 +159,7 @@ function Rental() {
               let input = e.target;
               if (input.value.length > input.maxLength)
                 input.value = input.value.slice(0, input.maxLength);
-            }} // Max length
+            }}
             name="studentId"
             id="stdId"
             type="number"

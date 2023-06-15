@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import "../success.css";
+import "../process.css";
 import checkLogo from "../images/check.svg";
 import rightArrow from "../images/rightArrow.png";
 import Button from "./components/Button";
@@ -8,21 +9,28 @@ import Progress from "./components/Progress";
 
 let date = new Date();
 date.setDate(date.getDate() + 5);
-let year = date.getFullYear();
 let month = date.getMonth() + 1;
 let day = date.getDate();
 
 function Success() {
-  const {
-    state: { state, stdId, umbId },
-  } = useLocation();
-  if (state == null) {
-    // window.history.back(); // prevent direct access to the page.
-  }
+  const { state } = useLocation();
+  const proState = state?.state;
+  const stdId = state?.stdId;
+  const umbId = state?.umbId;
+  const outOfDate = state?.outOfDate;
 
-  const returnDate = `반납 기한: ${month < 10 ? `0${month}` : `${month}`}월 ${
-    day < 10 ? `0${day}` : `${day}일`
-  }`;
+  useEffect(() => {
+    if (state === null) {
+      window.history.back();
+    }
+  }, [state]);
+
+  const returnDate = `반납 기한: ${String(month).padStart(2, "0")}월 \
+  ${String(day).padStart(2, "0")}일`;
+
+  const returnMsg = `${outOfDate === "Yes" ? "연체되었습니다." : "성공적으로 반납되었습니다."}`;
+
+  console.log(state);
 
   return (
     <>
@@ -33,18 +41,20 @@ function Success() {
           우산 대여 서비스
         </h1>
         <Progress progress={2} />
+
         <img src={checkLogo} alt="Check Sign" style={{ margin: "5px 0 0" }} />
-        <h2 className="succeed">처리완료</h2>
+        <h2 className="process">처리완료</h2>
         <p className="info">
-          {state === 0 && (
+          {proState === 0 && (
             <>
               {stdId}
               <img className="right-arrow-success" src={rightArrow} alt="" />
+              {umbId}
             </>
           )}
-          {umbId}번 우산{state === 1 && "반납"}
+          {proState === 1 && (umbId + "번 우산 반납")}
         </p>
-        <h3 className="warning">{state === 0 && returnDate}</h3>
+        <h3 className="warning">{state === 0 ? returnDate : returnMsg}</h3>
         <Link to="/">
           <Button btnText="돌아가기" />
         </Link>

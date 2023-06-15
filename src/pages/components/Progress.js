@@ -1,3 +1,5 @@
+import "../../progress-bar.css";
+
 function Progress(props) {
   let color1, color2;
 

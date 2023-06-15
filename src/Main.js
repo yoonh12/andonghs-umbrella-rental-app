@@ -4,6 +4,8 @@ import Rental from './pages/FormRental';
 import Return from './pages/Return';
 import ScanRental from "./pages/ScanRental";
 import Success from "./pages/Success";
+import HandleError from "./pages/Error";
+import DirectProcess from "./DirectProcess";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route path="/return" element={<Return />} />
         <Route path="/scan" element={<ScanRental />} />
         <Route path="/success" element={<Success />} />
+        <Route path="/fail" element={<HandleError />} />
+        <Route path="/quick" element={<DirectProcess />} />
       </Routes>
     </BrowserRouter>
   );
