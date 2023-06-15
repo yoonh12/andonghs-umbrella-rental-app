@@ -13,24 +13,24 @@ let month = date.getMonth() + 1;
 let day = date.getDate();
 
 function Success() {
-  const { state } = useLocation();
-  const proState = state?.state;
-  const stdId = state?.stdId;
-  const umbId = state?.umbId;
-  const outOfDate = state?.outOfDate;
+  const { loc } = useLocation();
+  const state = loc?.state;
+  const stdId = loc?.stdId;
+  const umbId = loc?.umbId;
+  const outOfDate = loc?.outOfDate;
 
   useEffect(() => {
-    if (state === null) {
+    if (loc === null) {
       window.history.back();
     }
-  }, [state]);
+  }, [loc]);
 
   const returnDate = `반납 기한: ${String(month).padStart(2, "0")}월 \
   ${String(day).padStart(2, "0")}일`;
 
   const returnMsg = `${outOfDate === "Yes" ? "연체되었습니다." : "성공적으로 반납되었습니다."}`;
 
-  console.log(state);
+  console.log(loc);
 
   return (
     <>
@@ -45,16 +45,16 @@ function Success() {
         <img src={checkLogo} alt="Check Sign" style={{ margin: "5px 0 0" }} />
         <h2 className="process">처리완료</h2>
         <p className="info">
-          {proState === 0 && (
+          {state === 0 && (
             <>
               {stdId}
               <img className="right-arrow-success" src={rightArrow} alt="" />
               {umbId}
             </>
           )}
-          {proState === 1 && (umbId + "번 우산 반납")}
+          {state === 1 && (umbId + "번 우산 반납")}
         </p>
-        <h3 className="warning">{state === 0 ? returnDate : returnMsg}</h3>
+        <h3 className="warning">{loc === 0 ? returnDate : returnMsg}</h3>
         <Link to="/">
           <Button btnText="돌아가기" />
         </Link>

@@ -15,10 +15,9 @@ function Rental() {
 
   const [showPopupA, setShowPopupA] = useState(false); // popup status
   const [showPopupB, setShowPopupB] = useState(false); // popup status
-  const [showPopupC, setShowPopupC] = useState(false); // popup status
+  const [showWarn, setShowWarn] = useState(false); // popup status
   const popupRefA = useRef();
   const popupRefB = useRef();
-  const popupRefC = useRef();
 
   /* when Input Change */
   const onChange = (e) => {
@@ -33,10 +32,6 @@ function Rental() {
     setShowPopupB((prevState) => !prevState);
   };
 
-  const togglePopupC = () => {
-    setShowPopupC((prevState) => !prevState);
-  };
-
   /* when Click Popup Outside to Close. start */
   const handleClickOutside = (e) => {
     if (popupRefA.current && !popupRefA.current.contains(e.target)) {
@@ -44,9 +39,6 @@ function Rental() {
     }
     if (popupRefB.current && !popupRefB.current.contains(e.target)) {
       setShowPopupB(false);
-    }
-    if (popupRefC.current && !popupRefC.current.contains(e.target)) {
-      setShowPopupC(false);
     }
   };
 
@@ -63,7 +55,7 @@ function Rental() {
     if (studentId !== "" && !isNaN(studentId) && studentId.length === 4) {
       setShowPopupA(true);
     } else {
-      setShowPopupC(true);
+      setShowWarn(true);
     }
   };
 
@@ -137,21 +129,8 @@ function Rental() {
             showChat
           />
         )}
-        {/* Popup C */}
-        {showPopupC && (
-          <Popup
-            popupRef={popupRefC}
-            onClose={togglePopupC}
-            onButtonClick={togglePopupC}
-            title={[
-              "실패 ",
-              <FontAwesomeIcon key="icon" icon={faExclamation} />,
-            ]}
-            subTitle={"학번을 올바르게 입력해 주세요!"}
-            buttonText="넵 🫤"
-          />
-        )}
 
+        {/* Form */}
         <form className="std-form" onSubmit={onSubmit}>
           <label htmlFor="stdId">인적 사항</label>
           <input
@@ -168,6 +147,9 @@ function Rental() {
             value={studentId}
             placeholder="학번을 입력해 주세요. (e.g. 2515)"
           />
+          {showWarn && (
+            <div className="input-warn">학번을 올바르게 입력해 주세요!</div>
+          )}
           <Button
             btnText={
               <img

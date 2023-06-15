@@ -30,6 +30,13 @@
   font-weight: 200;
 }
 
+.std-form .input-warn {
+  color: red;
+  font-size: 1.2em;
+  font-weight: 700;
+  align-self: flex-start;
+}
+
 /* Hide Spin Buttons */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

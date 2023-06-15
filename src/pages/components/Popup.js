@@ -9,7 +9,7 @@ function Popup(props) {
   setTimeout(() => {
     setPopOn(true);
   }, 0);
-  // console.log(popOn);
+
   return (
     <>
       <div className={"overlay " + (props.showChat && "overlay-under") + " " + (popOn ? "show" : "hide")} />
