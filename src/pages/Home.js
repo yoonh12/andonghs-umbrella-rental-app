@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import umbrellaLogo from "../images/umbrella.svg";
 import Button from "./components/Button";
 
-function onClick() {
-  console.log("It works!");
-}
-
 function Home() {
+  const navigate = useNavigate();
+  const onClickIfu = () => {
+    navigate("/ifu");
+  };
   return (
     <>
       <div className="container ignore-height">
@@ -44,7 +44,7 @@ function Home() {
               @<span className="neo">NEOFLUX</span>
             </a>
           </span>
-          <button className="ifu" onClick={onClick}>
+          <button className="ifu" onClick={onClickIfu}>
             이용안내
           </button>
         </p>

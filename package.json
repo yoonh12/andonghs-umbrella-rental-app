@@ -9,7 +9,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@yudiel/react-qr-scanner": "^1.1.8",
+    "@yudiel/react-qr-scanner": "^1.1.9",
     "moment": "^2.29.4",
     "mysql2": "^3.3.2",
     "query-string": "^8.1.0",

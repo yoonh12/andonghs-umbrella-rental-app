@@ -15,10 +15,8 @@ function Return() {
         <Progress progress={0} />
         <p className="progress-status">우산 반납</p>
         <div className="scanner">
-          <Scanner state={1} />
+          <Scanner isRenting={false} />
         </div>
-        {/* 0(false) -> rental
-        1(true) -> return */}
       </div>
       <Footer />
     </>

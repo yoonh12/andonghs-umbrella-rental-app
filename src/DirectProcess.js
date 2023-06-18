@@ -2,21 +2,21 @@ import { useEffect, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import queryString from "query-string";
 
-const DirectProcess = (props) => {
+const DirectProcess = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const processQueryString = useCallback(async () => {
     const query = queryString.parse(location.search);
     const umbId = Number(query?.umb_id);
-
+    
     if (!isNaN(umbId)) {
       try {
         const response = await fetch("https://api.neoflux.club/send", {
           method: "post",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            state: 1,
+            isRenting: false,
             umbId: umbId,
             check: false,
           }),
@@ -29,7 +29,7 @@ const DirectProcess = (props) => {
         if (status === 200) {
           navigate("/success", {
             state: {
-              state: props.state,
+              isRenting: false,
               umbId: umbId,
             },
           });
@@ -44,7 +44,7 @@ const DirectProcess = (props) => {
     } else {
       navigate("/fail", { state: "QR did not provide a number." });
     }
-  }, [location.search, navigate, props.state]);
+  }, [location.search, navigate]);
 
   useEffect(() => {
     processQueryString();

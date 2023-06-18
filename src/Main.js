@@ -6,6 +6,8 @@ import ScanRental from "./pages/ScanRental";
 import Success from "./pages/Success";
 import HandleError from "./pages/Error";
 import DirectProcess from "./DirectProcess";
+import Info from "./pages/Info";
+import Scanner from "./pages/components/ScanDB";
 
 function App() {
   return (
@@ -17,7 +19,10 @@ function App() {
         <Route path="/scan" element={<ScanRental />} />
         <Route path="/success" element={<Success />} />
         <Route path="/fail" element={<HandleError />} />
+        <Route path="/ifu" element={<Info />} />
         <Route path="/quick" element={<DirectProcess />} />
+
+        <Route path="/send" element={<Scanner />} />
       </Routes>
     </BrowserRouter>
   );

@@ -85,6 +85,24 @@
   color: #000;
 }
 
+.popup-small-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.half { /* Small Popup Button */
+  width: calc(var(--default-screen) / 2) !important;
+}
+
+/* Button Margin*/
+.mr-5 {
+  margin-right: 5px !important;
+}
+.ml-5 {
+  margin-left: 5px !important;
+}
+
+
 @media (min-width: 1024px) {
   .popup-content {
     width: calc(var(--large-screen) + 30px);

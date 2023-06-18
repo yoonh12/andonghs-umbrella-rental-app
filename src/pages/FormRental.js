@@ -10,13 +10,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 
 function Rental() {
-  const [studentId, setStudentId] = useState("");
   const navigate = useNavigate();
+  const [studentId, setStudentId] = useState("");
+  const [showWarn, setShowWarn] = useState(false);
 
   const [showPopupA, setShowPopupA] = useState(false); // popup status
-  const [showPopupB, setShowPopupB] = useState(false); // popup status
-  const [showWarn, setShowWarn] = useState(false); // popup status
   const popupRefA = useRef();
+
+  const [showPopupB, setShowPopupB] = useState(false); // popup status
   const popupRefB = useRef();
 
   /* when Input Change */
@@ -25,11 +26,11 @@ function Rental() {
   };
 
   const togglePopupA = () => {
-    setShowPopupA((prevState) => !prevState);
+    setShowPopupA((prev) => !prev);
   };
 
   const togglePopupB = () => {
-    setShowPopupB((prevState) => !prevState);
+    setShowPopupB((prev) => !prev);
   };
 
   /* when Click Popup Outside to Close. start */
@@ -52,7 +53,7 @@ function Rental() {
   /* Check form value after submit */
   const onSubmit = (e) => {
     e.preventDefault(); // prevent HTML form submit
-    if (studentId !== "" && !isNaN(studentId) && studentId.length === 4) {
+    if (studentId !== "" && !isNaN(studentId) && studentId.length === 4 && Number(studentId) < 3800) {
       setShowPopupA(true);
     } else {
       setShowWarn(true);
@@ -74,7 +75,7 @@ function Rental() {
       const chk = await response.json();
 
       if (chk.isAvailable) {
-        navigate("/scan", { state: Number(studentId) });
+        navigate("/scan", { state: { stdId: Number(studentId) } });
       } else if (chk.isAvailable === false) {
         setShowPopupA(false);
         setShowPopupB(true);
@@ -113,7 +114,6 @@ function Rental() {
         {showPopupB && (
           <Popup
             popupRef={popupRefB}
-            onClose={togglePopupB}
             onButtonClick={togglePopupB}
             title={[
               "실패 ",

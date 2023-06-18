@@ -1,80 +1,129 @@
-import { useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useCallback, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { QrScanner } from "@yudiel/react-qr-scanner";
 import PropTypes from "prop-types";
 import moment from "moment";
 
-const Scanner = ({ state, stdId, setShowPopup }) => {
+const URL = "https://umbrella.andonghs.kr/quick?umbId"; // Domain of QR Code
+
+const Scanner = ({
+  isRenting,
+  popRes,
+  setPopRes,
+  umbId,
+  setUmbId,
+  setShowAskPop,
+  setShowAvailPop,
+}) => {
   const rentalDateDB = moment().format("YYYY-MM-DD");
   const returnDateDB = moment().add(5, "days").format("YYYY-MM-DD");
 
   const navigate = useNavigate();
+  const { state } = useLocation(),
+    stdId = state?.stdId;
 
   const handleDecode = useCallback(
     async (qrVal) => {
-      const umbId = Number(qrVal);
+      const params = new URLSearchParams(qrVal);
 
-      if (isNaN(umbId)) {
+      const queryStringValue = params.get(URL);
+
+      if (queryStringValue?.length > 3) {
+        return;
+      }
+
+      const umbId = Number(queryStringValue);
+      console.log(queryStringValue);
+
+      if (isNaN(umbId) || umbId === 0) {
         navigate("/fail", { state: "QR provide an invalid value." });
         return;
       }
 
-      console.log(umbId + "번 우산이 맞나요?");
-
-      try {
-        const response = await fetch("https://api.neoflux.club/send", {
-          method: "post",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            state,
-            stdId,
-            umbId,
-            rentalDate: rentalDateDB,
-            returnDate: returnDateDB,
-            check: false,
-          }),
-        });
-
-        const { status } = response;
-        const res = await response.json();
-        console.log(status, res);
-
-        if (res.isAvailable === false) {
-          setShowPopup(true);
-        } else if (status === 200) {
-          navigate("/success", {
-            state: {
-              state,
+      if (popRes === false && isRenting === true) {
+        setUmbId(umbId);
+        setShowAskPop(true);
+      } else if (popRes === true || isRenting === false) {
+        try {
+          const response = await fetch("https://api.neoflux.club/send", {
+            method: "post",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              isRenting,
               stdId,
               umbId,
-              outOfDate: res.outOfDate,
-            },
+              rentalDate: rentalDateDB,
+              returnDate: returnDateDB,
+              check: false,
+            }),
           });
-        } else {
-          navigate("/fail", {
-            state: status === 400 ? res : "Unknown Server Error.",
-          });
+
+          const { status } = response;
+          const res = await response.json();
+          console.log(res);
+
+          if (res.isAvailable === false) {
+            setShowAskPop(false);
+            setShowAvailPop(true);
+          } else if (status === 200) {
+            navigate("/success", {
+              state: {
+                isRenting,
+                stdId,
+                umbId,
+                outOfDate: res.outOfDate,
+              },
+            });
+          } else {
+            navigate("/fail", {
+              state: status === 400 ? res : "Unknown Server Error.",
+            });
+          }
+        } catch (err) {
+          navigate("/fail", { state: err });
         }
-      } catch (err) {
-        navigate("/fail", { state: err });
+      } else {
+        navigate("/fail", { state: "Can't get respond from ScanRental" });
       }
     },
-    [navigate, state, stdId, rentalDateDB, returnDateDB, setShowPopup]
+    [
+      navigate,
+      isRenting,
+      popRes,
+      stdId,
+      setUmbId,
+      setShowAskPop,
+      setShowAvailPop,
+      rentalDateDB,
+      returnDateDB,
+    ]
   );
+
+  useEffect(() => {
+    if (popRes === true) {
+      handleDecode(URL + "=" + umbId);
+      setPopRes(false);
+    }
+  }, [popRes, handleDecode, umbId, setPopRes]);
 
   return (
     <QrScanner
       scanDelay={700}
       onDecode={handleDecode}
+      // onResult={(result) => console.log(result)}
       onError={(err) => navigate("/fail", { state: err?.message })}
     />
   );
 };
 
 Scanner.propTypes = {
-  state: PropTypes.number,
-  stdId: PropTypes.number,
-  setShowPopup: PropTypes.func,
+  isRenting: PropTypes.bool,
+  popRes: PropTypes.bool,
+  setPopRes: PropTypes.func,
+  umbId: PropTypes.number,
+  setUmbId: PropTypes.func,
+  setShowAskPop: PropTypes.func,
+  setShowAvailPop: PropTypes.func,
 };
 
 export default Scanner;

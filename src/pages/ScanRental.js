@@ -1,25 +1,35 @@
 import { useRef, useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import Footer from "./components/Footer";
 import Scanner from "./components/ScanDB";
 import Progress from "./components/Progress";
 import Popup from "./components/Popup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExclamation } from "@fortawesome/free-solid-svg-icons";
+import { faExclamation, faQrcode } from "@fortawesome/free-solid-svg-icons";
 
 function ScanRental() {
-  const { state: stdId } = useLocation();
+  const [popRes, setPopRes] = useState(false);
 
-  const [showPopup, setShowPopup] = useState(false);
-  const popupRef = useRef();
+  const [showAvailPop, setShowAvailPop] = useState(false);
+  const popAvail = useRef();
 
-  const togglePopup = () => {
-    setShowPopup(!showPopup);
+  const [showAskPop, setShowAskPop] = useState(false);
+  const popAsk = useRef();
+
+  const [umbId, setUmbId] = useState("");
+
+  const closeAvailPop = () => {
+    setShowAvailPop(false);
   };
 
+  const toggleAskPop = () => {
+    setShowAskPop((prev) => !prev);
+  };
   const handleClickOutside = (e) => {
-    if (popupRef.current && !popupRef.current.contains(e.target)) {
-      setShowPopup(false);
+    if (popAvail.current && !popAvail.current.contains(e.target)) {
+      setShowAvailPop(false);
+    }
+    if (popAsk.current && !popAsk.current.contains(e.target)) {
+      setShowAskPop(false);
     }
   };
 
@@ -29,6 +39,10 @@ function ScanRental() {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
+
+  const onClickYes = () => {
+    setPopRes(true);
+  };
 
   return (
     <>
@@ -41,11 +55,22 @@ function ScanRental() {
 
         <Progress progress={1} />
 
-        {showPopup && (
+        {showAskPop && (
           <Popup
-            popupRef={popupRef}
-            onClose={togglePopup}
-            onButtonClick={togglePopup}
+            popupRef={popAsk}
+            onClickYes={onClickYes}
+            onClickNo={toggleAskPop}
+            title={["확인 ", <FontAwesomeIcon key="icon" icon={faQrcode} />]}
+            subTitle={umbId + "번 우산이 맞나요?"}
+            buttonTextYes="네!"
+            buttonTextCancel="아니요.."
+          />
+        )}
+
+        {showAvailPop && (
+          <Popup
+            popupRef={popAvail}
+            onButtonClick={closeAvailPop}
             title={[
               "실패 ",
               <FontAwesomeIcon key="icon" icon={faExclamation} />,
@@ -61,10 +86,16 @@ function ScanRental() {
 
         <p className="progress-status">우산 대여</p>
         <div className="scanner">
-          <Scanner state={0} stdId={stdId} setShowPopup={setShowPopup} />
+          <Scanner
+            isRenting={true}
+            umbId={umbId}
+            popRes={popRes}
+            setUmbId={setUmbId}
+            setShowAskPop={setShowAskPop}
+            setShowAvailPop={setShowAvailPop}
+            setPopRes={setPopRes}
+          />
         </div>
-        {/* 0(false) -> rental
-        1(true) -> return */}
       </div>
       <Footer />
     </>

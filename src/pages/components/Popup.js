@@ -12,7 +12,14 @@ function Popup(props) {
 
   return (
     <>
-      <div className={"overlay " + (props.showChat && "overlay-under") + " " + (popOn ? "show" : "hide")} />
+      <div
+        className={
+          "overlay " +
+          (props.showChat && "overlay-under") +
+          " " +
+          (popOn ? "show" : "hide")
+        }
+      />
       <div className={"popup-wrapper " + (props.showChat && "popup-under")}>
         <div
           className={"popup-content " + (popOn ? "show" : "hide")}
@@ -26,7 +33,20 @@ function Popup(props) {
           <h1>{props.title}</h1>
           <h2>{props.subTitle}</h2>
           {props.smallText && <h3>{props.smallText}</h3>}
-          <Button btnText={props.buttonText} onClick={props.onButtonClick} />
+          {props.buttonTextYes && props.buttonTextCancel !== null ? (
+            <>
+              <div className="popup-small-buttons">
+                <button className="btn half mr-5" onClick={props.onClickYes}>
+                  {props.buttonTextYes}
+                </button>
+                <button className="btn half ml-5" onClick={props.onClickNo}>
+                  {props.buttonTextCancel}
+                </button>
+              </div>
+            </>
+          ) : (
+            <Button btnText={props.buttonText} onClick={props.onButtonClick} />
+          )}
         </div>
       </div>
     </>
