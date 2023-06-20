@@ -16,7 +16,6 @@
 
 .info {
   text-align: center;
-  padding: 10px;
   display: flex;
   align-items: center;
   font-size: 15px;
@@ -29,8 +28,17 @@
 }
 
 .warning {
-  margin: 5px 0;
   color: red;
   font-size: 20px;
   font-weight: 800;
+}
+
+@media (min-width: 1024px) {
+  .info {
+    font-size: 20px;
+  }
+
+  .warning {
+    font-size: 25px;
+  }
 }
