@@ -8,7 +8,8 @@ import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 
 function HandleError() {
   const { state } = useLocation();
-  console.log(state);
+  const errMsg = JSON.stringify(state);
+  console.log(errMsg);
 
   useEffect(() => {
     if (state === null) {
@@ -27,7 +28,7 @@ function HandleError() {
         <div className="icon"><FontAwesomeIcon icon={faTriangleExclamation} /></div>
         <h2 className="process error">오류</h2>
         <p className="info">죄송합니다. 오류가 발생했습니다. 다시 시도해주세요.<br/>문제가 지속될 경우 아래의 채팅앱을 통해<br/>오류 메시지와 함께 제보해주세요.</p>
-        <h3 className="warning">{}</h3>
+        <h3 className="warning">{errMsg}</h3>
         <Link to="/">
           <Button btnText="돌아가기" />
         </Link>

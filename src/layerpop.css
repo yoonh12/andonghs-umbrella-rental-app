@@ -54,6 +54,7 @@
 }
 
 .popup-close {
+  cursor: pointer;
   border: none;
   background-color: transparent;
   font-size: 15px;
@@ -130,5 +131,9 @@
   
   .popup-content > p {
     font-size: 20px;
+  }
+
+  .half { /* Small Popup Button */
+    width: calc(var(--large-screen) / 2) !important;
   }
 }
