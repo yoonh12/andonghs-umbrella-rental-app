@@ -56,8 +56,14 @@ input[type="number"] {
 
 @media (min-width: 1024px) {
   .std-form {
+    gap: 15px;
     width: var(--large-screen);
   }
+
+  .std-form input {
+    height: 50px;
+  }
+
   .right-arrow {
     width: 35px;
   }

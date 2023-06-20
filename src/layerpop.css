@@ -44,6 +44,8 @@
   box-shadow: 4px 4px 7px -3px rgb(0, 0, 0, 0.25);
   border-radius: 5px;
   background-color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
   gap: 10px;
 }
 
@@ -102,10 +104,31 @@
 
 @media (min-width: 1024px) {
   .popup-content {
+    gap: 15px;
     width: calc(var(--large-screen) + 30px);
   }
 
-  .popup-content > .btn {
-    margin: 10px 0;
+  .popup-close {
+    font-size: 20px;
+  }
+
+  .popup-content > h1 {
+    font-size: 25px;
+    font-weight: 800;
+    color: #000;
+  }
+  
+  .popup-content > h2 {
+    font-size: 25px;
+    font-weight: 800;
+    color: #ff0000;
+  }
+  
+  .popup-content > h3 {
+    font-size: 13px;
+  }
+  
+  .popup-content > p {
+    font-size: 20px;
   }
 }

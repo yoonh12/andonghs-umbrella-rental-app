@@ -156,13 +156,21 @@ a {
 }
 
 @media (min-width: 1024px) {
+  .container {
+    gap: 20px;
+  }
+
+  .btn-con {
+    gap: 20px;
+  }
+
   .logo-container {
     bottom: 180px;
   }
 
   .umbrella-logo {
+    padding-top: 20px;
     width: 160px;
-    margin: 10px 0;
   }
 
   .btn-con {
@@ -170,14 +178,12 @@ a {
   }
 
   .title {
-    margin: 10px 0;
     font-size: 4.5em;
   }
 
   .btn {
-    margin: 10px;
     width: var(--large-screen);
-    height: 75px;
+    height: 70px;
     font-size: 3em;
   }
 
@@ -187,7 +193,6 @@ a {
   }
 
   .bottom-txt {
-    margin: 10px 0;
     font-size: 18px;
     width: calc(2 * (var(--large-screen) + 10px));
   }
