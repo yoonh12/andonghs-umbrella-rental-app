@@ -15,7 +15,7 @@ function ScanRental() {
   const [showAskPop, setShowAskPop] = useState(false);
   const popAsk = useRef();
 
-  const [umbId, setUmbId] = useState("");
+  const [umbId, setUmbId] = useState(0);
 
   const closeAvailPop = () => {
     setShowAvailPop(false);
@@ -88,12 +88,12 @@ function ScanRental() {
         <div className="scanner">
           <Scanner
             isRenting={true}
-            umbId={umbId}
             popRes={popRes}
+            setPopRes={setPopRes}
+            umbId={umbId}
             setUmbId={setUmbId}
             setShowAskPop={setShowAskPop}
             setShowAvailPop={setShowAvailPop}
-            setPopRes={setPopRes}
           />
         </div>
       </div>

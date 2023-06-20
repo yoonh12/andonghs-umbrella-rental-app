@@ -40,10 +40,11 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  padding: 10px 15px;
+  padding: 15px;
   box-shadow: 4px 4px 7px -3px rgb(0, 0, 0, 0.25);
   border-radius: 5px;
   background-color: #fff;
+  gap: 10px;
 }
 
 .popup-content.show {
@@ -59,14 +60,12 @@
 }
 
 .popup-content > h1 {
-  margin: 5px 0;
   font-size: 20px;
   font-weight: 800;
   color: #000;
 }
 
 .popup-content > h2 {
-  margin: 5px 0;
   font-size: 20px;
   font-weight: 800;
   color: #ff0000;
@@ -75,11 +74,9 @@
 .popup-content > h3 {
   font-size: 11px;
   font-weight: 600;
-  margin: 5px 0;
 }
 
 .popup-content > p {
-  margin-bottom: 5px;
   font-size: 15px;
   font-weight: 600;
   color: #000;

@@ -35,7 +35,7 @@ const Scanner = ({
       const umbId = Number(queryStringValue);
       console.log(queryStringValue);
 
-      if (isNaN(umbId) || umbId === 0) {
+      if (isNaN(umbId) || umbId <= 0) {
         navigate("/fail", { state: "QR provide an invalid value." });
         return;
       }
