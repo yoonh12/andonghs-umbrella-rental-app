@@ -42,7 +42,7 @@ function Success() {
         </h1>
         <Progress progress={2} />
 
-        <img src={checkLogo} alt="Check Sign" style={{ margin: "5px 0 0" }} />
+        <img src={checkLogo} alt="Check Sign" />
         <h2 className="process">처리완료</h2>
         <p className="info">
           {isRenting === true && (
