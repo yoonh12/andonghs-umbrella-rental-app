@@ -184,7 +184,7 @@ a {
   .btn {
     width: var(--large-screen);
     height: 70px;
-    font-size: 3em;
+    font-size: 2.5em;
   }
 
   /* Scanner */
