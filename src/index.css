@@ -129,6 +129,7 @@ a {
 }
 
 .ifu {
+  cursor: pointer;
   margin-left: auto;
   background-color: transparent;
   border: none;

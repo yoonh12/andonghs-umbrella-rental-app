@@ -14,32 +14,42 @@ function Rental() {
   const [studentId, setStudentId] = useState("");
   const [showWarn, setShowWarn] = useState(false);
 
-  const [showPopupA, setShowPopupA] = useState(false); // popup status
-  const popupRefA = useRef();
+  const [showCautionPop, setShowCautionPop] = useState(false); // popup status
+  const popCaution = useRef();
 
-  const [showPopupB, setShowPopupB] = useState(false); // popup status
-  const popupRefB = useRef();
+  const [showExistUserPop, setShowExistUserPop] = useState(false); // popup status
+  const popExistUser = useRef();
+
+  const [showLateUserPop, setShowLateUserPop] = useState(false); // popup status
+  const popLateUser = useRef();
 
   /* when Input Change */
   const onChange = (e) => {
     setStudentId(e.target.value);
   };
 
-  const togglePopupA = () => {
-    setShowPopupA((prev) => !prev);
+  const toggleCautionPopup = () => {
+    setShowCautionPop((prev) => !prev);
   };
 
-  const togglePopupB = () => {
-    setShowPopupB((prev) => !prev);
+  const toggleExistUserPop = () => {
+    setShowExistUserPop((prev) => !prev);
+  };
+
+  const toggleLateUserPop = () => {
+    setShowLateUserPop((prev) => !prev);
   };
 
   /* when Click Popup Outside to Close. start */
   const handleClickOutside = (e) => {
-    if (popupRefA.current && !popupRefA.current.contains(e.target)) {
-      setShowPopupA(false);
+    if (popCaution.current && !popCaution.current.contains(e.target)) {
+      setShowCautionPop(false);
     }
-    if (popupRefB.current && !popupRefB.current.contains(e.target)) {
-      setShowPopupB(false);
+    if (popExistUser.current && !popExistUser.current.contains(e.target)) {
+      setShowExistUserPop(false);
+    }
+    if (popLateUser.current && !popLateUser.current.contains(e.target)) {
+      setShowLateUserPop(false);
     }
   };
 
@@ -53,8 +63,13 @@ function Rental() {
   /* Check form value after submit */
   const onSubmit = (e) => {
     e.preventDefault(); // prevent HTML form submit
-    if (studentId !== "" && !isNaN(studentId) && studentId.length === 4 && Number(studentId) < 3800) {
-      setShowPopupA(true);
+    if (
+      studentId !== "" &&
+      !isNaN(studentId) &&
+      studentId.length === 4 &&
+      Number(studentId) < 3800
+    ) {
+      setShowCautionPop(true);
     } else {
       setShowWarn(true);
     }
@@ -74,11 +89,14 @@ function Rental() {
 
       const chk = await response.json();
 
-      if (chk.isAvailable) {
+      if (chk.isAvailable && chk.noDelayed === undefined) {
         navigate("/scan", { state: { stdId: Number(studentId) } });
+      } else if (chk.noDelayed === false) {
+        setShowCautionPop(false);
+        setShowLateUserPop(true);
       } else if (chk.isAvailable === false) {
-        setShowPopupA(false);
-        setShowPopupB(true);
+        setShowCautionPop(false);
+        setShowExistUserPop(true);
       } else {
         console.log("Error while Check (from Client)");
       }
@@ -98,11 +116,10 @@ function Rental() {
 
         <Progress progress={0} />
 
-        {/* Popup A */}
-        {showPopupA && (
+        {showCautionPop && (
           <Popup
-            popupRef={popupRefA}
-            onClose={togglePopupA}
+            popupRef={popCaution}
+            onClose={toggleCautionPopup}
             onButtonClick={clickOkay}
             title="유의 사항"
             subTitle="우산은 5일 이내로 반납해주세요!"
@@ -110,11 +127,11 @@ function Rental() {
             hasCloseBtn
           />
         )}
-        {/* Popup B */}
-        {showPopupB && (
+
+        {showExistUserPop && (
           <Popup
-            popupRef={popupRefB}
-            onButtonClick={togglePopupB}
+            popupRef={popExistUser}
+            onButtonClick={toggleExistUserPop}
             title={[
               "실패 ",
               <FontAwesomeIcon key="icon" icon={faExclamation} />,
@@ -127,6 +144,23 @@ function Rental() {
             smallText="(본인이 대여하지 않은 경우, 아래의 채팅앱을 통해 제보해 주세요!)"
             buttonText="넵 🫤"
             showChat
+          />
+        )}
+
+        {showLateUserPop && (
+          <Popup
+            popupRef={popLateUser}
+            onButtonClick={toggleLateUserPop}
+            title={[
+              "실패 ",
+              <FontAwesomeIcon key="icon" icon={faExclamation} />,
+            ]}
+            subTitle={[
+              "연체되었습니다.",
+              <br key="line-break" />,
+              "관리자가 확인할 때 까지 기다려 주세요.",
+            ]}
+            buttonText="넵 🫤"
           />
         )}
 

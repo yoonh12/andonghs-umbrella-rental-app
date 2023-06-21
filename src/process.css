@@ -16,10 +16,13 @@
 
 .info {
   text-align: center;
-  display: flex;
-  align-items: center;
   font-size: 15px;
   font-weight: 600;
+}
+
+.info-flex {
+  display: flex;
+  align-items: center;
 }
 
 .right-arrow-success {
@@ -28,9 +31,18 @@
 }
 
 .warning {
+  cursor: pointer;
+  text-align: center;
   color: red;
   font-size: 20px;
   font-weight: 800;
+}
+
+.warning { /* Allow Copy Error message */
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
 }
 
 @media (min-width: 1024px) {

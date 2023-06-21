@@ -4,7 +4,14 @@ function Footer() {
       <p className="copyright">
         <span className="license">LICENSE</span>
         <span className="copy">
-          @AHS @<span className="neo">NEOFLUX</span>
+          <a
+            href="http://school.gyo6.net/andonghs"
+            target="_blank"
+            rel="noreferrer"
+          >
+            @AHS
+          </a>{" "}
+          @<span className="neo">NEOFLUX</span>
         </span>
       </p>
     </div>

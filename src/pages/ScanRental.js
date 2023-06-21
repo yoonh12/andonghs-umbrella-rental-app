@@ -21,9 +21,10 @@ function ScanRental() {
     setShowAvailPop(false);
   };
 
-  const toggleAskPop = () => {
-    setShowAskPop((prev) => !prev);
+  const closeAskPop = () => {
+    setShowAskPop(false);
   };
+
   const handleClickOutside = (e) => {
     if (popAvail.current && !popAvail.current.contains(e.target)) {
       setShowAvailPop(false);
@@ -58,8 +59,8 @@ function ScanRental() {
         {showAskPop && (
           <Popup
             popupRef={popAsk}
-            onClickYes={onClickYes}
-            onClickNo={toggleAskPop}
+            onButtonClickYes={onClickYes}
+            onButtonClickNo={closeAskPop}
             title={["확인 ", <FontAwesomeIcon key="icon" icon={faQrcode} />]}
             subTitle={umbId + "번 우산이 맞나요?"}
             buttonTextYes="네!"

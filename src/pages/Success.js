@@ -17,7 +17,7 @@ function Success() {
   const isRenting = state?.isRenting;
   const stdId = state?.stdId;
   const umbId = state?.umbId;
-  const outOfDate = state?.outOfDate;
+  // const outOfDate = state?.outOfDate;
 
   useEffect(() => {
     if (state === null) {
@@ -28,7 +28,7 @@ function Success() {
   const returnDate = `반납 기한: ${String(month).padStart(2, "0")}월 \
   ${String(day).padStart(2, "0")}일 까지`;
 
-  const returnMsg = `${outOfDate === "Yes" ? "연체되었습니다." : "성공적으로 반납되었습니다."}`;
+  const returnMsg = "성공적으로 반납되었습니다.";
 
   console.log(state);
 
@@ -44,7 +44,7 @@ function Success() {
 
         <img src={checkLogo} alt="Check Sign" />
         <h2 className="process">처리완료</h2>
-        <p className="info">
+        <p className="info info-flex">
           {isRenting === true && (
             <>
               {stdId}

@@ -14,7 +14,10 @@ const Scanner = ({
   setUmbId,
   setShowAskPop,
   setShowAvailPop,
+  setShowNoUmbPop,
 }) => {
+  // const [sc, setSc] = useState(true);
+
   const rentalDateDB = moment().format("YYYY-MM-DD");
   const returnDateDB = moment().add(5, "days").format("YYYY-MM-DD");
 
@@ -62,10 +65,14 @@ const Scanner = ({
           const res = await response.json();
           console.log(res);
 
-          if (res.isAvailable === false) {
+          if (res === true) {
+            // if no umbrella on db
+            setUmbId(umbId);
+            setShowNoUmbPop(true);
+          } else if (res.isAvailable === false) {
             setShowAskPop(false);
             setShowAvailPop(true);
-          } else if (status === 200) {
+          } else if (status === 200 && res.outOfDate === undefined) {
             navigate("/success", {
               state: {
                 isRenting,
@@ -74,6 +81,8 @@ const Scanner = ({
                 outOfDate: res.outOfDate,
               },
             });
+          } else if (res.outOfDate !== undefined) {
+            navigate("/delay", { state: { outOfDate: res.outOfDate } });
           } else {
             navigate("/fail", {
               state: status === 400 ? res : "Unknown Server Error.",
@@ -94,6 +103,7 @@ const Scanner = ({
       setUmbId,
       setShowAskPop,
       setShowAvailPop,
+      setShowNoUmbPop,
       rentalDateDB,
       returnDateDB,
     ]
@@ -106,11 +116,17 @@ const Scanner = ({
     }
   }, [popRes, handleDecode, umbId, setPopRes]);
 
+  useEffect(() => {
+    return () => {
+      // setSc(false);
+    };
+  }, []);
+
   return (
     <QrScanner
+      tracker={false}
       scanDelay={700}
       onDecode={handleDecode}
-      // onResult={(result) => console.log(result)}
       onError={(err) => navigate("/fail", { state: err?.message })}
     />
   );

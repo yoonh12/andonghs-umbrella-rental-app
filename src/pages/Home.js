@@ -7,6 +7,7 @@ function Home() {
   const onClickIfu = () => {
     navigate("/ifu");
   };
+
   return (
     <>
       <div className="container ignore-height">
@@ -26,7 +27,7 @@ function Home() {
           <Link to="/rental">
             <Button btnText="대여하기" />
           </Link>
-          <Link to="/return">
+          <Link to="/return" state={{ isRenting: false }}>
             <Button btnText="반납하기" />
           </Link>
         </div>
@@ -40,9 +41,7 @@ function Home() {
             >
               @AHS
             </a>{" "}
-            <a href="https://neoflux.club" target="_blank" rel="noreferrer">
-              @<span className="neo">NEOFLUX</span>
-            </a>
+            @<span className="neo">NEOFLUX</span>
           </span>
           <button className="ifu" onClick={onClickIfu}>
             이용안내
