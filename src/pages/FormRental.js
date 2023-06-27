@@ -91,7 +91,7 @@ function Rental() {
 
       if (chk.isAvailable && chk.noDelayed === undefined) {
         navigate("/scan", { state: { stdId: Number(studentId) } });
-      } else if (chk.noDelayed === false) {
+      } else if (chk.notDelayed === false) {
         setShowCautionPop(false);
         setShowLateUserPop(true);
       } else if (chk.isAvailable === false) {
@@ -155,12 +155,9 @@ function Rental() {
               "실패 ",
               <FontAwesomeIcon key="icon" icon={faExclamation} />,
             ]}
-            subTitle={[
-              "연체되었습니다.",
-              <br key="line-break" />,
-              "관리자가 확인할 때 까지 기다려 주세요.",
-            ]}
-            buttonText="넵 🫤"
+            subTitle="연체되었습니다."
+            smallText="관리자가 확인할 때 까지 기다려 주세요."
+            buttonText="알겠습니다"
           />
         )}
 

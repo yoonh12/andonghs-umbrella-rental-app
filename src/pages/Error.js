@@ -12,7 +12,7 @@ import {
 
 function HandleError() {
   const { state } = useLocation();
-  const errMsg = JSON.stringify(state);
+  const errMsg = state.toString();
 
   const doErrCopy = () => {
     try {

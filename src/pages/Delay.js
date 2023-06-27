@@ -33,8 +33,6 @@ function Delay() {
           우산을 5일 이내에 반납하지 않아 연체 처리되었습니다.
           <br />
           이 경우, 관리자가 확인하기 전까지 <span style={{fontWeight: 900}}>우산을 대여하실 수 없습니다.</span>
-          <br />
-          오류 메시지와 함께 제보해주세요.
         </p>
         <h3 className="warning">{`${outOfDate}일 연체`}</h3>
         <Link to="/">

@@ -16,9 +16,7 @@ const Scanner = ({
   setShowAvailPop,
   setShowNoUmbPop,
 }) => {
-  // const [sc, setSc] = useState(true);
-
-  const rentalDateDB = moment().format("YYYY-MM-DD");
+  const rentalDateDB = moment().format("YYYY-MM-DD HH:mm:ss");
   const returnDateDB = moment().add(5, "days").format("YYYY-MM-DD");
 
   const navigate = useNavigate();
@@ -72,7 +70,9 @@ const Scanner = ({
           } else if (res.isAvailable === false) {
             setShowAskPop(false);
             setShowAvailPop(true);
-          } else if (status === 200 && res.outOfDate === undefined) {
+          } else if (status === 200 && res.outOfDate !== undefined) {
+            navigate("/delay", { state: { outOfDate: res.outOfDate } });
+          } else if (status === 200) {
             navigate("/success", {
               state: {
                 isRenting,
@@ -81,8 +81,6 @@ const Scanner = ({
                 outOfDate: res.outOfDate,
               },
             });
-          } else if (res.outOfDate !== undefined) {
-            navigate("/delay", { state: { outOfDate: res.outOfDate } });
           } else {
             navigate("/fail", {
               state: status === 400 ? res : "Unknown Server Error.",
@@ -117,10 +115,15 @@ const Scanner = ({
   }, [popRes, handleDecode, umbId, setPopRes]);
 
   useEffect(() => {
-    return () => {
-      // setSc(false);
+    window.onpopstate = () => {
+      console.log("Back");
+      if (isRenting === true) {
+        window.location.replace("/rental");
+      } else {
+        window.location.replace("/");
+      }
     };
-  }, []);
+  }, [isRenting]);
 
   return (
     <QrScanner

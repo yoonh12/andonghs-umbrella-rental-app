@@ -45,7 +45,7 @@ function Return() {
           <Popup
             popupRef={popNoUmb}
             onButtonClick={closeNoUmbPop}
-            title={["음 ", <FontAwesomeIcon key="icon" icon={faQuestion} />]}
+            title={["음.. ", <FontAwesomeIcon key="icon" icon={faQuestion} />]}
             subTitle={umbId + "번 우산은 빌린 적이 없는걸요?"}
             buttonText="아.. 😏"
           />
