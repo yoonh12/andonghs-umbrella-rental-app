@@ -9,7 +9,7 @@ const DirectProcess = () => {
   const processQueryString = useCallback(async () => {
     const query = queryString.parse(location.search);
     const umbId = Number(query?.umb_id);
-    
+
     if (!isNaN(umbId)) {
       try {
         const response = await fetch("https://api.neoflux.club/send", {

@@ -52,9 +52,15 @@ function Success() {
               {umbId}
             </>
           )}
-          {isRenting === false && (umbId + "번 우산 반납")}
+          {isRenting === false && umbId + "번 우산 반납"}
         </p>
-        <h3 className="warning">{isRenting === true ? returnDate : isRenting === false ? returnMsg : ""}</h3>
+        <h3 className="warning">
+          {isRenting === true
+            ? returnDate
+            : isRenting === false
+            ? returnMsg
+            : ""}
+        </h3>
         <Link to="/">
           <Button btnText="돌아가기" />
         </Link>

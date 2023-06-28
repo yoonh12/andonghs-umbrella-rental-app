@@ -36,10 +36,16 @@ function Popup(props) {
           {props.buttonTextYes && props.buttonTextCancel !== null ? (
             <>
               <div className="popup-small-buttons">
-                <button className="btn half mr-5" onClick={props.onButtonClickYes}>
+                <button
+                  className="btn half mr-5"
+                  onClick={props.onButtonClickYes}
+                >
                   {props.buttonTextYes}
                 </button>
-                <button className="btn half ml-5" onClick={props.onButtonClickNo}>
+                <button
+                  className="btn half ml-5"
+                  onClick={props.onButtonClickNo}
+                >
                   {props.buttonTextCancel}
                 </button>
               </div>
