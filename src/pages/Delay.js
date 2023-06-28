@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import "../process.css";
+import "../styles/process.css";
 import Button from "./components/Button";
 import Footer from "./components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

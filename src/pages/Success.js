@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import "../process.css";
+import "../styles/process.css";
 import checkLogo from "../images/check.svg";
 import rightArrow from "../images/rightArrow.png";
 import Button from "./components/Button";

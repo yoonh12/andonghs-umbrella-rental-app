@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../form.css";
+import "../styles/form.css";
 import rightArrow from "../images/rightArrow.png";
 import Progress from "./components/Progress";
 import Button from "./components/Button";
