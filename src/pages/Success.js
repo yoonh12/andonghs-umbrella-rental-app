@@ -17,7 +17,6 @@ function Success() {
   const isRenting = state?.isRenting;
   const stdId = state?.stdId;
   const umbId = state?.umbId;
-  // const outOfDate = state?.outOfDate;
 
   useEffect(() => {
     if (state === null) {
