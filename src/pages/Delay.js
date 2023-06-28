@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../styles/process.css";
-import Button from "./components/Button";
-import Footer from "./components/Footer";
+import Button from "../components/Button";
+import Footer from "../components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 

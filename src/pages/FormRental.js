@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/form.css";
 import rightArrow from "../images/rightArrow.png";
-import Progress from "./components/Progress";
-import Button from "./components/Button";
-import Footer from "./components/Footer";
-import Popup from "./components/Popup";
+import Progress from "../components/Progress";
+import Button from "../components/Button";
+import Footer from "../components/Footer";
+import Popup from "../components/Popup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 

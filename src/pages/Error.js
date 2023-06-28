@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../styles/process.css";
-import Popup from "./components/Popup";
-import Button from "./components/Button";
-import Footer from "./components/Footer";
+import Popup from "../components/Popup";
+import Button from "../components/Button";
+import Footer from "../components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faExclamation,

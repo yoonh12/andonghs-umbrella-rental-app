@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import umbrellaLogo from "../images/umbrella.svg";
-import Button from "./components/Button";
+import Button from "../components/Button";
 
 function Home() {
   const navigate = useNavigate();
