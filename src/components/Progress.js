@@ -1,4 +1,4 @@
-import "../../styles/progress-bar.css";
+import "../styles/progress-bar.css";
 
 function Progress(props) {
   let color1, color2;
