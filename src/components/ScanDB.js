@@ -4,7 +4,7 @@ import { QrScanner } from "@yudiel/react-qr-scanner";
 import PropTypes from "prop-types";
 import moment from "moment";
 
-const URL = "https://umbrella.andonghs.kr/quick?umbId"; // Domain of QR Code
+const qrURL = process.env.REACT_APP_QR_URL_PREFIX; // Domain of QR Code
 
 const Scanner = ({
   isRenting,
@@ -27,7 +27,7 @@ const Scanner = ({
     async (qrVal) => {
       const params = new URLSearchParams(qrVal);
 
-      const queryStringValue = params.get(URL);
+      const queryStringValue = params.get(qrURL);
 
       if (queryStringValue?.length > 3) {
         return;
@@ -46,7 +46,7 @@ const Scanner = ({
         setShowAskPop(true);
       } else if (popRes === true || isRenting === false) {
         try {
-          const response = await fetch("https://api.neoflux.club/send", {
+          const response = await fetch(process.env.REACT_APP_API_URL, {
             method: "post",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -109,7 +109,7 @@ const Scanner = ({
 
   useEffect(() => {
     if (popRes === true) {
-      handleDecode(URL + "=" + umbId);
+      handleDecode(qrURL + "=" + umbId);
       setPopRes(false);
     }
   }, [popRes, handleDecode, umbId, setPopRes]);
