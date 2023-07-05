@@ -78,7 +78,7 @@ function Rental() {
   /* when Click Popup Button */
   const clickOkay = async () => {
     try {
-      const response = await fetch(process.env.REACT_APP_API_URL, {
+      const response = await fetch('/api', {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

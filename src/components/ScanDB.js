@@ -1,7 +1,6 @@
 import { useCallback, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-// import { QrScanner } from "@yudiel/react-qr-scanner";
-import BarcodeScannerComponent from "react-qr-barcode-scanner";
+import { QrScanner } from "@yudiel/react-qr-scanner";
 import PropTypes from "prop-types";
 import moment from "moment";
 
@@ -25,9 +24,7 @@ const Scanner = ({
     stdId = state?.stdId;
 
   const handleDecode = useCallback(
-    async (err, qrVal) => {
-      console.log(qrVal);
-      
+    async (qrVal) => {
       const params = new URLSearchParams(qrVal);
 
       const queryStringValue = params.get(qrURL);
@@ -49,7 +46,7 @@ const Scanner = ({
         setShowAskPop(true);
       } else if (popRes === true || isRenting === false) {
         try {
-          const response = await fetch(process.env.REACT_APP_API_URL, {
+          const response = await fetch('/api', {
             method: "post",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -129,13 +126,10 @@ const Scanner = ({
   // }, [isRenting]);
 
   return (
-    <BarcodeScannerComponent
-      // scanDelay={700}
-      // onDecode={handleDecode}
-      // onError={(err) => navigate("/fail", { state: err?.message })}
-      width={500}
-      height={500}
-      onUpdate={handleDecode}
+    <QrScanner
+      scanDelay={700}
+      onDecode={handleDecode}
+      onError={(err) => navigate("/fail", { state: err?.message })}
     />
   );
 };
