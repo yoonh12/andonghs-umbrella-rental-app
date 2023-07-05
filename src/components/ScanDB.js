@@ -114,16 +114,16 @@ const Scanner = ({
     }
   }, [popRes, handleDecode, umbId, setPopRes]);
 
-  // useEffect(() => {
-  //   window.onpopstate = () => {
-  //     console.log("Back");
-  //     if (isRenting === true) {
-  //       window.location.replace("/rental");
-  //     } else {
-  //       window.location.replace("/");
-  //     }
-  //   };
-  // }, [isRenting]);
+  useEffect(() => {
+    window.onpopstate = () => {
+      console.log("Back");
+      if (isRenting === true) {
+        window.location.replace("/rental");
+      } else {
+        window.location.replace("/");
+      }
+    };
+  }, [isRenting]);
 
   return (
     <QrScanner
