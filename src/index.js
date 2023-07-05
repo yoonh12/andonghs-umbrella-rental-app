@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import Home from "./pages/Home";
-import Loading from "./pages/Loading";
 import Rental from "./pages/FormRental";
 import Return from "./pages/Return";
 import ScanRental from "./pages/ScanRental";
@@ -19,7 +18,6 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/loading" element={<Loading />} />
         <Route path="/rental" element={<Rental />} />
         <Route path="/return" element={<Return />} />
         <Route path="/scan" element={<ScanRental />} />
