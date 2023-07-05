@@ -14,6 +14,12 @@ function HandleError() {
   const { state } = useLocation();
   const errMsg = state.toString();
 
+  useEffect(() => {
+    if (errMsg === null) {
+      window.history.back();
+    }
+  }, [errMsg]);
+
   const doErrCopy = () => {
     try {
       navigator.clipboard.writeText(errMsg);
