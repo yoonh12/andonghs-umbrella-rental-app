@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import Footer from "../components/Footer";
-import Scanner from "../components/ScanDB";
+import Scanner from "../components/utils/ScanDB";
 import Progress from "../components/Progress";
 import Popup from "../components/Popup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
