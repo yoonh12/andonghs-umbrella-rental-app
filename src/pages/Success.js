@@ -3,9 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 import "../styles/process.css";
 import checkLogo from "../images/check.svg";
 import rightArrow from "../images/rightArrow.png";
-import Button from "../components/Button";
-import Footer from "../components/Footer";
-import Progress from "../components/Progress";
+import Button from "../components/button";
+import Footer from "../components/footer";
+import Progress from "../components/progress";
 
 let date = new Date();
 date.setDate(date.getDate() + 5);

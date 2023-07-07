@@ -1,14 +1,14 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ReactDOM from "react-dom/client";
-import Home from "./pages/Home";
-import Rental from "./pages/FormRental";
-import Return from "./pages/Return";
-import ScanRental from "./pages/ScanRental";
-import Success from "./pages/Success";
-import HandleError from "./pages/Error";
-import DirectProcess from "./DirectReturn";
-import Info from "./pages/Info";
-import Delay from "./pages/Delay";
+import Home from "./pages/home";
+import Rental from "./pages/formRental";
+import Return from "./pages/return";
+import ScanRental from "./pages/scanRental";
+import Success from "./pages/success";
+import HandleError from "./pages/error";
+import DirectProcess from "./directReturn";
+import Info from "./pages/info";
+import Delay from "./pages/delay";
 
 import "./styles/index.css";
 
