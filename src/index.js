@@ -6,7 +6,7 @@ import Return from "./pages/Return";
 import ScanRental from "./pages/ScanRental";
 import Success from "./pages/Success";
 import HandleError from "./pages/Error";
-import DirectProcess from "./DirectProcess";
+import DirectProcess from "./DirectReturn";
 import Info from "./pages/Info";
 import Delay from "./pages/Delay";
 
