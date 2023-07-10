@@ -12,7 +12,7 @@ const DirectProcess = () => {
 
     if (!isNaN(umbId)) {
       try {
-        const response = await fetch('/api', {
+        const response = await fetch("/api", {
           method: "post",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
