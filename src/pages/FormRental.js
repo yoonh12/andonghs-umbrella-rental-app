@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/form.css";
 import rightArrow from "../images/rightArrow.png";
+import loadIcon from "../images/loading.svg";
 import Progress from "../components/progress";
 import Button from "../components/button";
 import Footer from "../components/footer";
@@ -12,7 +13,9 @@ import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 function Rental() {
   const navigate = useNavigate();
   const [studentId, setStudentId] = useState("");
-  const [showWarn, setShowWarn] = useState(false);
+  const [showWarn, setShowWarn] = useState(false); // display student id error
+
+  const [loading, setLoading] = useState(false);
 
   const [showCautionPop, setShowCautionPop] = useState(false); // popup status
   const popCaution = useRef();
@@ -78,7 +81,8 @@ function Rental() {
   /* when Click Popup Button */
   const clickOkay = async () => {
     try {
-      const response = await fetch('/api', {
+      setLoading(true);
+      const response = await fetch("/api", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -86,6 +90,8 @@ function Rental() {
           stdId: Number(studentId),
         }),
       });
+
+      setLoading(false);
 
       const chk = await response.json();
 
@@ -115,6 +121,8 @@ function Rental() {
         </h1>
 
         <Progress progress={0} />
+
+        {loading && <div className="loading"><img src={loadIcon} alt="loading" /></div>}
 
         {showCautionPop && (
           <Popup
