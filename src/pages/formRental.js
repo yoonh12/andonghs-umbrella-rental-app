@@ -13,7 +13,7 @@ import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 function Rental() {
   const navigate = useNavigate();
   const [studentId, setStudentId] = useState("");
-  const [showWarn, setShowWarn] = useState(false); // display student id error
+  const [showWarn, setShowWarn] = useState(false); // display error if student id isn't correct
 
   const [loading, setLoading] = useState(false);
 
