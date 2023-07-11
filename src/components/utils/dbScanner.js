@@ -4,7 +4,7 @@ import { QrScanner } from "@yudiel/react-qr-scanner";
 import PropTypes from "prop-types";
 import moment from "moment";
 
-const qrURL = process.env.REACT_APP_QR_URL_PREFIX; // Domain of QR Code
+const qrURL = process.env.REACT_APP_QR_URL_PREFIX; // URL of QR Code e.g.) https://umbrella.andong.hs.kr/quick?umbid=100
 
 const Scanner = ({
   isRenting,
