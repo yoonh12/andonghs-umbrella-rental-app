@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import Footer from "../components/Footer";
-import Progress from "../components/Progress";
-import Scanner from "../components/ScanDB";
-import Popup from "../components/Popup";
+import Footer from "../components/footer";
+import Progress from "../components/progress";
+import Scanner from "../components/utils/dbScanner";
+import Popup from "../components/popup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 import { useRef } from "react";

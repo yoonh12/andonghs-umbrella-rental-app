@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../styles/layerpop.css";
-import Button from "./Button";
+import Button from "./button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
