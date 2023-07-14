@@ -108,6 +108,7 @@ function Rental() {
       }
     } catch (err) {
       console.log(err);
+      setLoading(false);
     }
   };
 
@@ -170,7 +171,7 @@ function Rental() {
         )}
 
         {/* Form */}
-        <form className="std-form" onSubmit={onSubmit}>
+        <form className="std-form" onSubmit={onSubmit} action="">
           <label htmlFor="stdId">인적 사항</label>
           <input
             onInput={(e) => {
