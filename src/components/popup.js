@@ -7,7 +7,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 function Popup(props) {
   const [popOn, setPopOn] = useState(false);
   setTimeout(() => {
-    setPopOn(true);
+    setPopOn(true); // transition 적용
   }, 0);
 
   return (
