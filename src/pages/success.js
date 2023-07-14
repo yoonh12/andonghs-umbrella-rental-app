@@ -8,7 +8,7 @@ import Footer from "../components/footer";
 import Progress from "../components/progress";
 
 let date = new Date();
-date.setDate(date.getDate() + 5);
+date.setDate(date.getDate() + 4);
 let month = date.getMonth() + 1;
 let day = date.getDate();
 
