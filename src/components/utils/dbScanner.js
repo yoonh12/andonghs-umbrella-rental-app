@@ -17,7 +17,7 @@ const Scanner = ({
   setShowNoUmbPop,
 }) => {
   const rentalDateDB = moment().format("YYYY-MM-DD HH:mm:ss");
-  const returnDateDB = moment().add(5, "days").format("YYYY-MM-DD");
+  const returnDateDB = moment().add(4, "days").format("YYYY-MM-DD");
 
   const navigate = useNavigate();
   const { state } = useLocation(),
@@ -58,6 +58,7 @@ const Scanner = ({
               check: false,
             }),
           });
+          console.log(1);
 
           const { status } = response;
           const res = await response.json();
