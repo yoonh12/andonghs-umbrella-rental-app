@@ -1,4 +1,6 @@
 import { useRef, useState, useEffect } from "react";
+import "../styles/loading.css";
+import loadIcon from "../images/loading.svg";
 import Footer from "../components/footer";
 import Scanner from "../components/utils/dbScanner";
 import Progress from "../components/progress";
@@ -16,6 +18,8 @@ function ScanRental() {
   const popAsk = useRef();
 
   const [umbId, setUmbId] = useState(0);
+
+  const [loading, setLoading] = useState(false);
 
   const closeAvailPop = () => {
     setShowAvailPop(false);
@@ -56,6 +60,8 @@ function ScanRental() {
 
         <Progress progress={1} />
 
+        {loading && <div className="loading"><img src={loadIcon} alt="loading" /></div>}
+
         {showAskPop && (
           <Popup
             popupRef={popAsk}
@@ -95,6 +101,7 @@ function ScanRental() {
             setUmbId={setUmbId}
             setShowAskPop={setShowAskPop}
             setShowAvailPop={setShowAvailPop}
+            setLoading={setLoading}
           />
         </div>
       </div>

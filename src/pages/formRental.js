@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/form.css";
-import rightArrow from "../images/rightArrow.png";
+import "../styles/loading.css";
 import loadIcon from "../images/loading.svg";
+import rightArrow from "../images/rightArrow.png";
 import Progress from "../components/progress";
 import Button from "../components/button";
 import Footer from "../components/footer";
@@ -15,7 +16,7 @@ function Rental() {
   const [studentId, setStudentId] = useState("");
   const [showWarn, setShowWarn] = useState(false); // display error if student id isn't correct
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false); // Loading state
 
   const [showCautionPop, setShowCautionPop] = useState(false); // popup status
   const popCaution = useRef();

@@ -15,6 +15,7 @@ const Scanner = ({
   setShowAskPop,
   setShowAvailPop,
   setShowNoUmbPop,
+  setLoading,
 }) => {
   const rentalDateDB = moment().format("YYYY-MM-DD HH:mm:ss");
   const returnDateDB = moment().add(4, "days").format("YYYY-MM-DD");
@@ -45,6 +46,7 @@ const Scanner = ({
         setUmbId(umbId);
         setShowAskPop(true);
       } else if (popRes === true || isRenting === false) {
+        setLoading(true)
         try {
           const response = await fetch(process.env.REACT_APP_API_URL + "/api", {
             method: "post",
@@ -58,7 +60,7 @@ const Scanner = ({
               check: false,
             }),
           });
-          console.log(1);
+          setLoading(false);
 
           const { status } = response;
           const res = await response.json();
@@ -103,6 +105,7 @@ const Scanner = ({
       setShowAskPop,
       setShowAvailPop,
       setShowNoUmbPop,
+      setLoading,
       rentalDateDB,
       returnDateDB,
     ]

@@ -1,17 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import "../styles/loading.css";
+import loadIcon from "../images/loading.svg";
 import Footer from "../components/footer";
 import Progress from "../components/progress";
 import Scanner from "../components/utils/dbScanner";
 import Popup from "../components/popup";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestion } from "@fortawesome/free-solid-svg-icons";
-import { useRef } from "react";
 
 function Return() {
   const [showNoUmbPop, setShowNoUmbPop] = useState(false);
   const popNoUmb = useRef();
 
   const [umbId, setUmbId] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const closeNoUmbPop = () => {
     setShowNoUmbPop(false);
@@ -41,6 +43,8 @@ function Return() {
 
         <Progress progress={0} />
 
+        {loading && <div className="loading loading-blur"><img src={loadIcon} alt="loading" /></div>}
+
         {showNoUmbPop && (
           <Popup
             popupRef={popNoUmb}
@@ -57,6 +61,7 @@ function Return() {
             isRenting={false}
             setUmbId={setUmbId}
             setShowNoUmbPop={setShowNoUmbPop}
+            setLoading={setLoading}
           />
         </div>
       </div>
