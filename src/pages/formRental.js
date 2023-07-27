@@ -94,14 +94,15 @@ function Rental() {
 
       setLoading(false);
 
-      const chk = await response.json();
+      const res = await response.json();
 
-      if (chk.isAvailable && chk.noDelayed === undefined) {
+      console.log(res);
+      if (res.isAvailable && res.noDelayed === undefined) {
         navigate("/scan", { state: { stdId: Number(studentId) } });
-      } else if (chk.notDelayed === false) {
+      } else if (res.notDelayed === false) {
         setShowCautionPop(false);
         setShowLateUserPop(true);
-      } else if (chk.isAvailable === false) {
+      } else if (res.isAvailable === false) {
         setShowCautionPop(false);
         setShowExistUserPop(true);
       } else {
