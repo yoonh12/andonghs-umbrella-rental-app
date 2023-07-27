@@ -34,14 +34,7 @@ function Home() {
         <p className="bottom-txt">
           <span className="license">LICENSE</span>
           <span className="copy">
-            <a
-              href="http://school.gyo6.net/andonghs"
-              target="_blank"
-              rel="noreferrer"
-            >
-              @AHS
-            </a>{" "}
-            @<span className="neo">NEOFLUX</span>
+            @AHS @<span className="neo">NEOFLUX</span>
           </span>
           <button className="ifu" onClick={onClickIfu}>
             이용안내
