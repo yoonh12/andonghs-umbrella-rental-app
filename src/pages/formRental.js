@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/form.css";
 import "../styles/loading.css";
+import axios from "axios";
 import loadIcon from "../images/loading.svg";
 import rightArrow from "../images/rightArrow.png";
 import Progress from "../components/progress";
@@ -71,7 +72,8 @@ function Rental() {
       studentId !== "" &&
       !isNaN(studentId) &&
       studentId.length === 4 &&
-      Number(studentId) < 3800
+      Number(studentId) < 3800 &&
+      Number(studentId) >= 1101
     ) {
       setShowCautionPop(true);
     } else {
@@ -83,18 +85,20 @@ function Rental() {
   const clickOkay = async () => {
     try {
       setLoading(true);
-      const response = await fetch(process.env.REACT_APP_API_URL + "/api", {
-        method: "post",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api`,
+        {
           willChk: true,
           stdId: Number(studentId),
-        }),
-      });
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
       setLoading(false);
 
-      const res = await response.json();
+      const res = response.data;
 
       console.log(res);
       if (res.isAvailable && res.noDelayed === undefined) {
@@ -125,8 +129,14 @@ function Rental() {
 
         <Progress progress={0} />
 
-        {loading && <div className="loading"><img src={loadIcon} alt="loading" /></div>}
+        {/* Loading Icon */}
+        {loading && (
+          <div className="loading">
+            <img src={loadIcon} alt="loading" />
+          </div>
+        )}
 
+        {/* Popups */}
         {showCautionPop && (
           <Popup
             popupRef={popCaution}

@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { QrScanner } from "@yudiel/react-qr-scanner";
 import PropTypes from "prop-types";
 import moment from "moment";
@@ -46,28 +47,35 @@ const Scanner = ({
         setUmbId(umbId);
         setShowAskPop(true);
       } else if (popRes === true || isRenting === false) {
-        setLoading(true)
+        setLoading(true);
+
+        const requestData = {
+          isRenting,
+          stdId,
+          umbId,
+          rentalDate: rentalDateDB,
+          returnDate: returnDateDB,
+          willChk: false,
+        };
+
         try {
-          const response = await fetch(process.env.REACT_APP_API_URL + "/api", {
-            method: "post",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              isRenting,
-              stdId,
-              umbId,
-              rentalDate: rentalDateDB,
-              returnDate: returnDateDB,
-              check: false,
-            }),
-          });
+          // Using async/await for making the axios POST request
+          const response = await axios.post(
+            `${process.env.REACT_APP_API_URL}/api`,
+            requestData,
+            {
+              headers: { "Content-Type": "application/json" },
+            }
+          );
+
           setLoading(false);
 
-          const { status } = response;
-          const res = await response.json();
+          const status = response.status;
+          const res = response.data;
           console.log(res);
 
           if (res === true) {
-            // if no umbrella on db
+            // If no umbrella on db
             setUmbId(umbId);
             setShowNoUmbPop(true);
           } else if (res.isAvailable === false) {
@@ -81,16 +89,15 @@ const Scanner = ({
                 isRenting,
                 stdId,
                 umbId,
-                outOfDate: res.outOfDate,
               },
             });
           } else {
             navigate("/fail", {
-              state: status === 400 ? res : "Unknown Server Error.",
+              state: "Unknown Server Error.",
             });
           }
         } catch (err) {
-          navigate("/fail", { state: err });
+          navigate("/fail", { state: err.message });
         }
       } else {
         navigate("/fail", { state: "Can't get respond from ScanRental" });
