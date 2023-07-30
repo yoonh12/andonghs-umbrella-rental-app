@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { QrScanner } from "@yudiel/react-qr-scanner";
@@ -18,6 +18,33 @@ const Scanner = ({
   setShowNoUmbPop,
   setLoading,
 }) => {
+  // subscription
+  const [subscriptionInfo, setSubscriptionInfo] = useState(null);
+
+  useEffect(() => {
+    async function fetchSubscriptionInfo() {
+      try {
+        const registration = await navigator.serviceWorker.ready;
+        if (!registration) {
+          console.log("Service Worker not available.");
+          return;
+        }
+
+        const subscription = await registration.pushManager.getSubscription();
+        if (subscription) {
+          console.log("Subscription information:", subscription);
+          setSubscriptionInfo(subscription);
+        } else {
+          console.log("Subscription not found.");
+        }
+      } catch (error) {
+        console.error("Error while fetching subscription information:", error);
+      }
+    }
+
+    fetchSubscriptionInfo();
+  }, []);
+
   const rentalDateDB = moment().format("YYYY-MM-DD HH:mm:ss");
   const returnDateDB = moment().add(4, "days").format("YYYY-MM-DD");
 
@@ -56,7 +83,10 @@ const Scanner = ({
           rentalDate: rentalDateDB,
           returnDate: returnDateDB,
           willChk: false,
+          subscription: JSON.stringify(subscriptionInfo),
         };
+
+        console.log(requestData);
 
         try {
           // Using async/await for making the axios POST request
@@ -115,6 +145,7 @@ const Scanner = ({
       setLoading,
       rentalDateDB,
       returnDateDB,
+      subscriptionInfo,
     ]
   );
 

@@ -9,7 +9,7 @@ import HandleError from "./pages/error";
 import DirectProcess from "./directReturn";
 import Info from "./pages/info";
 import Delay from "./pages/delay";
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import { registerServiceWorker } from "./serviceWorkerRegistration";
 
 import "./styles/index.css";
 
@@ -33,5 +33,5 @@ function App() {
 }
 root.render(<App />);
 
-// Notification.requestPermission();
-serviceWorkerRegistration.unregister();
+Notification.requestPermission();
+registerServiceWorker();
