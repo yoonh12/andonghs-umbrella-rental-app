@@ -27,7 +27,7 @@ function Home() {
           <Link to="/rental">
             <Button btnText="대여하기" />
           </Link>
-          <Link to="/return" state={{ isRenting: false }}>
+          <Link to="/return">
             <Button btnText="반납하기" />
           </Link>
         </div>
