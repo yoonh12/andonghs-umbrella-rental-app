@@ -7,8 +7,8 @@
   --primary: #ffc145;
   --primary-hover: #fcca45; /* +4096 (Decimal) */
 
-  --default-screen: 300px;
-  --large-screen: 350px;
+  --default-screen: 300px; /* mobile */
+  --large-screen: 350px; /* PC */
 }
 
 * {
@@ -157,7 +157,7 @@ a {
   -webkit-text-fill-color: transparent;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .container {
     gap: 20px;
   }
