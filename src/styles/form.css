@@ -54,7 +54,7 @@ input[type="number"] {
   width: 25px;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .std-form {
     gap: 15px;
     width: var(--large-screen);

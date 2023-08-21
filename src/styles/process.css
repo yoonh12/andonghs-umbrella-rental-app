@@ -45,7 +45,7 @@
   user-select: text;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .info {
     font-size: 20px;
   }

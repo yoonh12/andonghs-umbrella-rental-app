@@ -103,7 +103,7 @@
 }
 
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .popup-content {
     gap: 15px;
     width: calc(var(--large-screen) + 30px);
