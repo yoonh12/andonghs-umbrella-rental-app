@@ -8,7 +8,7 @@ const DirectProcess = () => {
 
   const processQueryString = useCallback(async () => {
     const query = queryString.parse(location.search);
-    const umbId = Number(query?.umb_id);
+    const umbId = Number(query?.umbId);
 
     if (!isNaN(umbId)) {
       try {
